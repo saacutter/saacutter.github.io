@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Calculator</title>
+        <link href="styles.css" rel="stylesheet">
+        <script src="calculate.js"></script>
+    </head>
+    <body>
+        <div class="container center">
+            <div class="head">
+                <input type="text" value="0" class="display" disabled>
+            </div>
+            <div class="body">
+                <div class="numbers">
+                    <div class="row">
+                        <button onclick="displayDefault()">Clear</button>
+                        <button onclick="updateDisplay('%')">%</button>
+                        <button onclick="updateDisplay('(')">(</button>
+                    </div>
+                    <div class="row btm-margin">
+                        <button onclick="updateDisplay(1)">1</button>
+                        <button onclick="updateDisplay(2)">2</button>
+                        <button onclick="updateDisplay(3)">3</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="updateDisplay(4)">4</button>
+                        <button onclick="updateDisplay(5)">5</button>
+                        <button onclick="updateDisplay(6)">6</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="updateDisplay(7)">7</button>
+                        <button onclick="updateDisplay(8)">8</button>
+                        <button onclick="updateDisplay(9)">9</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="updateDisplay(0)">0</button>
+                        <button onclick="updateDisplay('.')">.</button>
+                        <button onclick="calculate()">=</button>
+                    </div>
+                </div>
+                <div class="operations">
+                    <button onclick="updateDisplay(')')">)</button>
+                    <button onclick="updateDisplay(' + ')">+</button>
+                    <button onclick="updateDisplay(' - ')">-</button>
+                    <button onclick="updateDisplay(' × ')">×</button>
+                    <button onclick="updateDisplay(' ÷ ')">÷</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html> 
