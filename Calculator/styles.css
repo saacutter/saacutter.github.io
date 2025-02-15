@@ -1,19 +1,14 @@
-@media screen and (min-width: 415px) {
+@media screen and (min-width: 701px) {
     .container {
         height: 40%;
         width: 40%;
     }
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 700px) {
     .container {
-        height: 60%;
+        height: 70%;
         width: 100%;
-    }
-
-    .body {
-        width: 114vw;
-        overflow-x: hidden;
     }
 }
 
@@ -30,8 +25,8 @@ body {
 }
 
 button {
-    height: 99%;
-    width: 30%;
+    height: 80%;
+    width: 23.5%;
     border: 0px solid transparent;
     border-radius: 10px;
     font-size: 20px;
@@ -62,37 +57,35 @@ button:hover {
 
 .display {
     height: 100%;
-    width: 98%;
+    width: 100%;
     border: 2px solid transparent;
     border-radius: 20px 20px 0 0;
     background-color: rgba(0, 0, 0, 0.1);
-    font-size: 30px;
     color: black;
+    font-size: 30px;
     text-align: right;
 }
 
-.top-row {
-    margin: 1em;
-}
-
 .body {
-    display: flex;
-    height: 35vh;
+    display: grid;
+    grid-template-rows: 5;
+    grid-template-columns: 4;
+    height: 41vh;
     margin: 1em;
-    flex-wrap: wrap;
 }
 
-.numbers {
-    display: inline-grid;
-    width: 70%;
+.operation {
+    background-color: rgba(0, 183, 255, 0.466);
 }
 
-.operations {
-    display: inline-grid;
-    grid-template-columns: 35vw;
-    width: 20%;
+.operation:hover {
+    background-color: rgba(0, 183, 255, 0.3);
 }
 
-.operations > button, .row > button {
-    height: 80%;
+.clear {
+    background-color: rgba(253, 157, 157, 0.8);
+}
+
+.clear:hover {
+    background-color: rgba(253, 157, 157, 1);
 }

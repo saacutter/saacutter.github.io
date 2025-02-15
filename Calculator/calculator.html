@@ -2,7 +2,6 @@
 
 <html lang="en">
     <head>
-        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Calculator</title>
         <link href="styles.css" rel="stylesheet">
@@ -14,39 +13,35 @@
                 <input type="text" value="0" class="display" disabled>
             </div>
             <div class="body">
-                <div class="numbers">
-                    <div class="row">
-                        <button onclick="displayDefault()">Clear</button>
-                        <button onclick="updateDisplay('%')">%</button>
-                        <button onclick="updateDisplay('(')">(</button>
-                    </div>
-                    <div class="row btm-margin">
-                        <button onclick="updateDisplay(1)">1</button>
-                        <button onclick="updateDisplay(2)">2</button>
-                        <button onclick="updateDisplay(3)">3</button>
-                    </div>
-                    <div class="row">
-                        <button onclick="updateDisplay(4)">4</button>
-                        <button onclick="updateDisplay(5)">5</button>
-                        <button onclick="updateDisplay(6)">6</button>
-                    </div>
-                    <div class="row">
-                        <button onclick="updateDisplay(7)">7</button>
-                        <button onclick="updateDisplay(8)">8</button>
-                        <button onclick="updateDisplay(9)">9</button>
-                    </div>
-                    <div class="row">
-                        <button onclick="updateDisplay(0)">0</button>
-                        <button onclick="updateDisplay('.')">.</button>
-                        <button onclick="calculate()">=</button>
-                    </div>
+                <div class="row">
+                    <button onclick="displayDefault()" class="clear">Clear</button>
+                    <button onclick="updateDisplay('%')" class="operation">%</button>
+                    <button onclick="updateDisplay('(')" class="operation">(</button>
+                    <button onclick="updateDisplay(')')" class="operation">)</button>
                 </div>
-                <div class="operations">
-                    <button onclick="updateDisplay(')')">)</button>
-                    <button onclick="updateDisplay(' + ')">+</button>
-                    <button onclick="updateDisplay(' - ')">-</button>
-                    <button onclick="updateDisplay(' × ')">×</button>
-                    <button onclick="updateDisplay(' ÷ ')">÷</button>
+                <div class="row">
+                    <button onclick="updateDisplay(1)">1</button>
+                    <button onclick="updateDisplay(2)">2</button>
+                    <button onclick="updateDisplay(3)">3</button>
+                    <button onclick="updateDisplay(' + ')" class="operation">+</button>
+                </div>
+                <div class="row">
+                    <button onclick="updateDisplay(4)">4</button>
+                    <button onclick="updateDisplay(5)">5</button>
+                    <button onclick="updateDisplay(6)">6</button>
+                    <button onclick="updateDisplay(' - ')" class="operation">-</button>
+                </div>
+                <div class="row">
+                    <button onclick="updateDisplay(7)">7</button>
+                    <button onclick="updateDisplay(8)">8</button>
+                    <button onclick="updateDisplay(9)">9</button>
+                    <button onclick="updateDisplay(' × ')" class="operation">×</button>
+                </div>
+                <div class="row">
+                    <button onclick="updateDisplay(0)">0</button>
+                    <button onclick="updateDisplay('.')">.</button>
+                    <button onclick="calculate()">=</button>
+                    <button onclick="updateDisplay(' ÷ ')" class="operation">÷</button>
                 </div>
             </div>
         </div>
