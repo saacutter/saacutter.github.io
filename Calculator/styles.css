@@ -1,8 +1,32 @@
+@media screen and (min-width: 415px) {
+    .container {
+        height: 40%;
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .container {
+        height: 60%;
+        width: 100%;
+    }
+
+    .body {
+        width: 114vw;
+        overflow-x: hidden;
+    }
+}
+
+* {
+    font-family: Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; 
+    -webkit-text-fill-color: black;
+}
+
 body {
     margin-top: 25vh;
     background-color: rgba(100, 100, 100, 0.15);
-    font-family: Helvetica, Arial, sans-serif;
-    box-sizing: border-box;
 }
 
 button {
@@ -27,8 +51,6 @@ button:hover {
 }
 
 .container {
-    height: 40%;
-    width: 40%;
     border: 2px solid black;
     border-radius: 20px;
     background-color: white;
@@ -57,6 +79,7 @@ button:hover {
     display: flex;
     height: 35vh;
     margin: 1em;
+    flex-wrap: wrap;
 }
 
 .numbers {
