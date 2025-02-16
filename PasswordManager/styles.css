@@ -3,10 +3,6 @@
 		width: 95%;
 	}
 
-    .window-body {
-        height: 75%;
-    }
-
     .spacer {
         width: 75%;
     }
@@ -22,15 +18,15 @@
     }
 }
 
-@media screen and (max-height: 675px) {
-    .window-body {
-        height: 70%;
-    }
-}
-
 @media screen and (min-height: 676px) {
     .window-body {
         height: 80%;
+    }
+}
+
+@media screen and (max-height: 675px) {
+    .window-body {
+        height: 70%;
     }
 }
 
