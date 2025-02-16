@@ -1,26 +1,36 @@
 @media screen and (max-width: 700px) {
-    #option-select {
-        width: 50%;
+    .window {
+		width: 95%;
+	}
+
+    .window-body {
+        height: 75%;
     }
 
-    #generate {
-        right: 2.5em;
+    .spacer {
+        width: 75%;
     }
 }
 
 @media screen and (min-width: 701px) {
-    #option-select {
-        width: 30%;
+    .window {
+        width: 60%;
     }
 
-    #generate {
-        right: 3.5em;
+    .spacer {
+        width: 70%;
     }
 }
 
-@media screen and (max-height: 775px) {
+@media screen and (max-height: 675px) {
     .window-body {
-        height: 75vh;
+        height: 70%;
+    }
+}
+
+@media screen and (min-height: 676px) {
+    .window-body {
+        height: 80%;
     }
 }
 
@@ -171,9 +181,8 @@ button:hover, input[type="button"]:hover {
 .window {
 	margin-top: 2vh;
     background-color: white;
-    width: 60%;
 	height: 95%;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .window-close {
@@ -192,7 +201,6 @@ button:hover, input[type="button"]:hover {
 }
 
 .window-body {
-    max-height: 82vh;
     overflow-y: auto;
 }
 
@@ -228,10 +236,6 @@ button:hover, input[type="button"]:hover {
     width: 85%;
     margin: auto;
     margin-top: 1em;
-}
-
-.spacer {
-	width: 40vw;
 }
 
 .inline {
@@ -305,14 +309,16 @@ button:hover, input[type="button"]:hover {
     height: 2em;
     width: 2em;
 	top: 1vh;
+    right: 10%;
 }
 
 #option-select {
+    width: 20%;
 	position: relative;
-	margin-left: 5vw;
 	background-color: white;
 	color: black;
 	border: 2px solid black;
+    margin-left: 9%;
 }
 
 #option-select:hover {
