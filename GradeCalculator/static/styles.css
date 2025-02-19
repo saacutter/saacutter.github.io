@@ -30,7 +30,7 @@ tfoot {
 
 input {
     border: 0px solid transparent;
-    margin: 0px;
+    width: 96%;
 }
 
 input:hover {
@@ -71,10 +71,6 @@ button:hover {
         width: 100%;
         font-size: 20px;
         table-layout: fixed;
-    }
-
-    input {
-        width: 96%;
     }
 
     button {
