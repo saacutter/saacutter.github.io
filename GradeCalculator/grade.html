@@ -13,69 +13,90 @@
         <link href="static/styles.css" rel="stylesheet">
     </head>
     <body>
-        <div class="header">
-            <h2>Assessment Calculator</h2>
+        <div class="panel">
+            <div class="header">
+                <h2>Grade Calculator</h2>
+            </div>
+            <div class="content">
+                <table class="center" id="calculate">
+                    <thead>
+                        <th style="text-align: center;">Assessment Name</th>
+                        <th style="text-align: center;">Weighting (%)</th>
+                        <th style="text-align: center;">Mark (%)</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input name="name" type="text" placeholder="Name (Optional)">
+                            </td>
+                            <td>
+                                <input name="weighting" type="number" min="0" autocomplete="off" required placeholder="Weighting">
+                            </td>
+                            <td>
+                                <input name="mark" type="number" min="0" autocomplete="off" required placeholder="Mark">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Total Weighting</td>
+                            <td colspan="2">0%</td>
+                        </tr>
+                        <tr>
+                            <td>Current Average</td>
+                            <td colspan="2">0.00%</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="buttons" id="calculate-buttons">
+                <div>
+                    <button onclick="addAssessment()">+ Add</button>
+                    <button onclick="removeAssessment()">- Remove</button>
+                </div>
+                <div>
+                    <button onclick="clearMainTable()">Clear</button>
+                </div>
+            </div>
         </div>
-        <div class="content">
-            <table class="center">
-                <thead>
-                    <th style="text-align: center;">Assessment Name</th>
-                    <th style="text-align: center;">Weighting (%)</th>
-                    <th style="text-align: center;">Mark (%)</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <input name="name" type="text" placeholder="Name (Optional)">
-                        </td>
-                        <td>
-                            <input name="weighting" type="number" min="0" autocomplete="off" required placeholder="Weighting">
-                        </td>
-                        <td>
-                            <input name="mark" type="number" min="0" autocomplete="off" required placeholder="Mark">
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td>Total Weighting</td>
-                        <td colspan="2">0%</td>
-                    </tr>
-                    <tr>
-                        <td>Current Average</td>
-                        <td colspan="2">0.00%</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <div class="buttons">
-            <button>+ Add</button>
-            <button>- Remove</button>
-            <button>Clear</button>
-        </div>
-        <div style="margin-top: 5vh; display: none;">
-            <table class="center">
-                <tbody>
-                    <tr>
-                        <td>Target Grade</td>
-                        <td colspan="2">
-                            <input name="target-grade" type="number" min="0" autocomplete="off" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Final Assessment Weight</td>
-                        <td colspan="2">
-                            <input name="final-weight" type="number" min="0" autocomplete="off" required>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td>Required Mark</td>
-                        <td colspan="2"></td>
-                    </tr>
-                </tfoot>
-            </table>
+        <div class="panel">
+            <div class="header" style="margin-top: 5vh;">
+                <h4>Final Grade Calculator</h4>
+            </div>
+            <div>
+                <table class="center" id="final-table">
+                    <tbody>
+                        <tr>
+                            <td style="width: 40%;">Current Grade (%)</td>
+                            <td colspan="2">
+                                <input name="current-grade" type="number" min="0", autocomplete="off" required placeholder="Current Grade">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Target Grade (%)</td>
+                            <td colspan="2">
+                                <input name="target-grade" type="number" min="0" autocomplete="off" required placeholder="Target Grade">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Final Assessment Weight (%)</td>
+                            <td colspan="2">
+                                <input name="final-weight" type="number" min="0" autocomplete="off" required placeholder="Final Weighting">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Required Mark</td>
+                            <td colspan="2" style="text-align: right;">0.00%</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="buttons" id="final-button">
+                <button onclick="calculateRequiredMark()">Calculate</button>
+                <button onclick="clearFinalTable()">Clear</button>
+            </div>
         </div>
     </body>
 </html>

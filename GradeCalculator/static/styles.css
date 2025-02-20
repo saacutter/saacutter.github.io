@@ -1,12 +1,16 @@
 /* Default values for all elements */
 * {
     font-family: Helvetica, Arial, sans-serif;
-    overflow-y: auto;
+    overflow: hidden;
+}
+
+.panel {
+    margin: 10px;
 }
 
 .header {
     text-align: center;
-    height: 15vh;
+    height: 8vh;
 }
 
 table {
@@ -65,6 +69,14 @@ button:hover {
     margin-right: auto;
 }
 
+#final-table {
+    width: 40%;
+}
+
+#final-table td {
+    text-align: center;
+}
+
 /* Scaling for different screen sizes */
 @media screen and (max-width: 700px) {
     table {
@@ -74,6 +86,10 @@ button:hover {
     }
 
     button {
-        width: 30%;
+        width: 45%;
+    }
+
+    #final-table {
+        width: 100%;
     }
 }

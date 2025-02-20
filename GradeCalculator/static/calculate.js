@@ -1,35 +1,41 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var table = document.querySelector('table');
-    table.addEventListener('change', updateFooter);
+    document.querySelector('#calculate').addEventListener('change', updateTable);
+    document.querySelector('#final-table').addEventListener('change', calculateRequiredMark);
 });
 
-function updateFooter() {
+function updateTable() {
     // Select the table footer
-    var tableFoot = document.querySelector('table').querySelector('tfoot').querySelectorAll('td');
+    var tableFoot = document.querySelector('#calculate').querySelector('tfoot').querySelectorAll('td');
 
     // Calculate the values
     var weightSum = sumElements();
-    var weightedAverage = calculateWeightedAverage();
+    var average = calculateAverage();
 
     // Ensure that both fields are numbers
-    if (isNaN(weightedAverage) || isNaN(weightSum)) {
+    if (isNaN(average) || isNaN(weightSum)) {
         weightSum = 0;
-        weightedAverage = 0;
+        average = 0;
     }
 
     // Insert values into table
     tableFoot[1].innerHTML = weightSum + "%";
-    tableFoot[3].innerHTML = weightedAverage.toFixed(2) + "%";
+    tableFoot[3].innerHTML = average.toFixed(2) + "%";
 
     // Change the text if the weighting sum is equal to 100%
     if (weightSum == 100) {
         tableFoot[2].innerHTML = "Final Score";
+        return;
     }
+
+    // Change the values of the final grade calculator
+    var finalTable = document.querySelector('#final-table').querySelector('tbody').querySelectorAll('td');
+    finalTable[1].children[0].value = average;
+    finalTable[5].children[0].value = 100 - weightSum;
 }
 
 function sumElements() {
     // Select the table body
-    var table = document.querySelector('table').querySelector('tbody');
+    var table = document.querySelector('#calculate').querySelector('tbody');
 
     // Calculate the sum of weights and sum of marks
     let sum = 0;
@@ -38,10 +44,17 @@ function sumElements() {
         weighting = table.rows[i].cells[1].children[0].value;
         mark = table.rows[i].cells[2].children[0].value;
 
-        // Ensure the values aren't empty
-        if (weighting == "" || mark == "") {
-            continue;
+        // Ensure the values are valid
+        invalid = false;
+        if (weighting < 0 || weighting > 100) {
+            table.rows[i].cells[1].children[0].value = "";
+            invalid = true;
         }
+        if (mark < 0 || mark > 100) {
+            table.rows[i].cells[2].children[0].value = "";
+            invalid = true;
+        }
+        if (invalid) return;
 
         // Add the entry's weighting to the total sum
         sum += Number(weighting);
@@ -57,9 +70,9 @@ function sumElements() {
     return sum;
 }
 
-function calculateWeightedAverage() {
+function calculateAverage() {
     // Select the table body
-    var table = document.querySelector('table').querySelector('tbody');
+    var table = document.querySelector('#calculate').querySelector('tbody');
 
     // Calculate the weighted sum
     let weightedSum = 0;
@@ -77,4 +90,45 @@ function calculateWeightedAverage() {
 
     // Return the weighted average calculation
     return weightedSum / totalWeight;
+}
+
+function calculateRequiredMark() {
+    // Select the table cells
+    var table = document.querySelector('#final-table');
+    var tableCells = table.querySelector('tbody').querySelectorAll('td');
+
+    // Extract the values from the table
+    current = tableCells[1].children[0].value;
+    target = tableCells[3].children[0].value;
+    finalWeight = tableCells[5].children[0].value;
+
+    // Ensure the values given are valid
+    invalid = false;
+    if (current < 0 || current > 100) {
+        tableCells[1].children[0].value = "";
+        invalid = true;
+    }
+    if (target < 0 || target > 100) {
+        tableCells[3].children[0].value = "";
+        invalid = true;
+    }
+    if (finalWeight < 0 || finalWeight > 100) {
+        tableCells[5].children[0].value = "";
+        invalid = true;
+    }
+    if (invalid) return;
+
+    // Convert values into decimals
+    current /= 100;
+    target /= 100;
+    finalWeight /= 100;
+    currentWeight = 1- finalWeight;
+
+    // Calculate the required mark
+    required = (target - (current * currentWeight)) / finalWeight;
+    if (required < 0 || isNaN(required)) {
+        return;
+    }
+
+    table.querySelector('tfoot').querySelectorAll('td')[1].innerHTML = (required * 100).toFixed(2) + "%";
 }

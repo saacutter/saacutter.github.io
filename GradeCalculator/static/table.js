@@ -1,13 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var button = document.querySelectorAll('button');
-    button[0].addEventListener('click', addAssessment);
-    button[1].addEventListener('click', removeAssessment);
-    button[2].addEventListener('click', clearTable);
-});
-
 function addAssessment() {
     // Select the table
-    var tableBody = document.querySelector('table').querySelector('tbody');
+    var tableBody = document.querySelector('#calculate').querySelector('tbody');
     
     // Create the table row
     var row = tableBody.insertRow();
@@ -46,32 +39,39 @@ function addAttributes(input) {
 
 function removeAssessment() {
     // Select the table
-    var table = document.querySelector('table').querySelector('tbody');
+    var table = document.querySelector('#calculate').querySelector('tbody');
 
     // Delete the last row if there is more than one
     if (table.rows.length > 1) {
         table.deleteRow(table.rows.length - 1);
+        updateTable();
     } else {
         alert("The requested action could not be performed.");
     }
 }
 
-function clearTable() {
-    // Select the table
-    var table = document.querySelector('table').querySelector('tbody');
+function clearMainTable() {
+    // Select the table cells
+    var tableCells = document.querySelector('#calculate').querySelector('tbody').querySelectorAll('td');
 
     // Clear the value for each row's cells
-    for (let i = 0; i < table.rows.length; i++) {
-        for (let j = 0; j < table.rows[i].cells.length; j++) {
-            table.rows[i].cells[j].children[0].value = "";
-        }
+    for (let i = 0; i < tableCells.length; i++) {
+        tableCells[i].children[0].value = "";
     }
 
-    updateFooter();
+    updateTable();
+    clearFinalTable();
+}
 
-    /* Alternate implementation
-    for (let i = table.rows.length - 1; i > 0; i--) {
-        table.deleteRow(i);
-    } 
-    */
+function clearFinalTable() {
+    // Select the table cells
+    var tableCells = document.querySelector('#final-table').querySelector('tbody').querySelectorAll('td');
+
+    // Clear the value for each row's cells
+    for (let i = 1; i < tableCells.length; i += 2) {
+        tableCells[i].children[0].value = "";
+    }
+
+    // Clear the required mark
+    document.querySelector('#final-table').querySelector('tfoot').querySelectorAll('td')[1].innerHTML = "0.00%";
 }
