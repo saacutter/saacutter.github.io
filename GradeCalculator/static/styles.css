@@ -1,7 +1,10 @@
 /* Default values for all elements */
 * {
     font-family: Helvetica, Arial, sans-serif;
-    overflow: hidden;
+}
+
+body {
+    overflow-y: auto;
 }
 
 .panel {
@@ -10,7 +13,7 @@
 
 .header {
     text-align: center;
-    height: 8vh;
+    height: 6vh;
 }
 
 table {
