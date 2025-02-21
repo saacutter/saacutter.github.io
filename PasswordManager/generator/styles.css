@@ -1,0 +1,85 @@
+* {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
+body {
+    background-color: #121212;
+}
+
+button {
+    transition: 0.4s ease;
+}
+
+button:hover {
+    border-radius: 20px;
+    background-color: rgb(184, 184, 184);
+}
+
+.spacer {
+    height: 20vh;
+}
+
+.inline {
+    display: flex;
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+.large-text {
+    font-size: 30px;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.black-text {
+    color: black;
+}
+
+.round-border {
+    border-radius: 15px;
+}
+
+.password-div {
+    height: 5vh;
+}
+
+.password-div input {
+    width: 70%;
+    height: 5vh;
+}
+
+.password-div button {
+    width: 20%;
+    height: 6vh;
+}
+
+.option {
+    margin-left: 2vw;
+}
+
+#length-input {
+    width: 5vw;
+}
+
+@media screen and (max-width: 700px) {
+    .password-div input {
+        width: 72.5%;
+    }
+
+    .password-div button {
+        width: 22.5%;
+    }
+
+    #length-input {
+        width: 10vw;
+    }
+}
