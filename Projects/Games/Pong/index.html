@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>saacutter.github.io | Pong</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      @font-face {
+        font-family: 'Tilt Warp';
+        src: url('/fonts/TiltWarp-Regular-VariableFont_XROT\,YROT.ttf') format('truetype');
+      }
+
+      body {
+        background-color: #ffff00;
+      }
+
+      h1 {
+        font-family: "Tilt Warp";
+        text-align: center;
+        font-size: 72px;
+      }
+
+      canvas {
+        display: block;
+        margin: 0 auto;
+        background-color: #242121;
+        padding: 5em;
+        border-radius: 10px;
+      }
+
+      button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2em;
+        font-size: 1em;
+      }
+
+      /* Adapted from https://medium.com/@dimterion/arrow-buttons-with-html-css-2b3906da23f4 */
+      #up, #down {
+        background-color: black;
+        border: 10px solid black;
+        cursor: pointer;
+        position: relative;
+      }
+
+      #up::before,
+      #down::before {
+        border: 20px solid transparent;
+        content: "";
+        position: absolute;
+        top: calc(50% - 20px);
+      }
+
+      #up::before {
+        border-right-color: black;
+        left: -43px;
+      }
+
+      #down::before {
+        border-left-color: black;
+        right: -43px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      PO<span style="display: inline-block; transform: rotate(180deg) translateY(-1px);">U</span>G
+    </h1>
+    <canvas id="screen" width="800" height="500"></canvas>
+    <div id="controls">
+      <button id="up" style="transform: rotate(90deg);"></button>
+      <button id="down" style="transform: rotate(90deg);"></button>
+    </div>
+    <script src="game.js"></script>
+    <script>
+      // Determine screen size
+      window.addEventListener('resize', () => {
+        if (screen.width < 1000) {
+          canvas.width = screen.width - 100;
+          canvas.height = canvas.width*(5/8);
+          canvas.style.padding = "0em";
+        } else {
+          canvas.style.padding = "5em";
+        }
+        start();
+      });
+    </script>
+  </body>
+</html>

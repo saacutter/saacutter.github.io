@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>saacutter.github.io | Ball Bounce</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      @font-face {
+        font-family: 'Jaro';
+        src: url('/fonts/Jaro-Regular.ttf') format('truetype');
+      }
+
+      body {
+        background-color: #65c4ea;
+      }
+
+      div {
+        position: relative;
+        margin-bottom: 80px;
+      }
+
+      #cl3 {
+        position: absolute;
+        left: -1vw;
+        top: -7vh;
+        z-index: 0;
+        width: 100vw;
+      }
+
+      #cl2 {
+        position: absolute;
+        left: -1vw;
+        bottom: -10vh;
+        width: 100vw;
+      }
+
+      h1 {
+        font-family: "Tilt Warp";
+        text-align: center;
+        font-size: 72px;
+        position: relative;
+        z-index: 2;
+      }
+
+      canvas {
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <img src="clouds2.png" id="cl3">
+      <h1 style="font-family: Jaro; color: black;">Ball Bounce</h1>
+    </div>
+    <canvas id="screen" width="800" height="400"></canvas>
+    <img src="clouds1.png" id="cl2">
+    <script src="game.js"></script>
+    <script>
+      // Determine screen size
+      window.addEventListener('resize', () => {
+        if (screen.width < 720) {
+          canvas.width = screen.width - 30;
+        }
+        start();
+      });
+    </script>
+  </body>
+</html>
