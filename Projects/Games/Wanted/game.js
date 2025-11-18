@@ -16,15 +16,15 @@ async function start() {
 
     // Load the images
     await loadImages();
-    let COLOURS = [MARIO, LUIGI, YOSHI, WARIO];
+    COLOURS = [MARIO, LUIGI, YOSHI, WARIO];
 
     // Randomly select the wanted character
-    let WANTED = COLOURS[Math.floor(Math.random() * COLOURS.length)];
+    WANTED = COLOURS[Math.floor(Math.random() * COLOURS.length)];
     img.src = WANTED.src;
     COLOURS.splice(COLOURS.indexOf(WANTED), 1);
 
     // Initialise the sprites to random locations
-    SPRITE_COUNT = Math.random() * ((canvas.width / 4) - 1) + (canvas.width / 40);
+    SPRITE_COUNT = Math.ceil(Math.random() * ((canvas.width / 4) - 1) + (canvas.width / 40));
     SPRITES = [];
     for (let i = 1; i < SPRITE_COUNT; i++) {
         SPRITES[i] = {
@@ -51,26 +51,7 @@ async function start() {
     SPRITES[0] = WANTED_OBJ; // Wanted object is always the first sprite (so it is always drawn first)
     
     // Add a click handler to wanted object
-    canvas.addEventListener('click', (event) => {
-        let x = event.clientX - canvas.offsetLeft;
-        let y = event.clientY - canvas.offsetTop;
-        if (x >= SPRITES[0].x && x <= SPRITES[0].x + SPRITEWIDTH && y >= SPRITES[0].y && y <= SPRITES[0].y + SPRITEHEIGHT) {
-            // Highlight the wanted character's position
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.beginPath();
-            ctx.drawImage(SPRITES[0].colour, SPRITES[0].x, SPRITES[0].y, SPRITEWIDTH, SPRITEHEIGHT);
-            ctx.closePath();
-
-            // Stop redrawing every sprite
-            clearInterval(interval);
-
-            // Add wanted character back to possible options
-            COLOURS.push(WANTED);
-
-            // Wait 2 seconds before starting again
-            setTimeout(start, 2000);
-        }
-    });
+    canvas.addEventListener('click', click);
 
     // Start the game
     interval = setInterval(draw, 1000 / FPS);
@@ -119,6 +100,30 @@ function loadImages() {
 
     LUIGI = new Image();
     LUIGI.src = "luigi.png";
+}
+
+function click(event) {
+    let x = event.clientX - canvas.offsetLeft;
+    let y = event.clientY - canvas.offsetTop;
+    if (x >= SPRITES[0].x && x <= SPRITES[0].x + SPRITEWIDTH && y >= SPRITES[0].y && y <= SPRITES[0].y + SPRITEHEIGHT) {
+        // Highlight the wanted character's position
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.drawImage(SPRITES[0].colour, SPRITES[0].x, SPRITES[0].y, SPRITEWIDTH, SPRITEHEIGHT);
+        ctx.closePath();
+
+        // Stop redrawing every sprite
+        clearInterval(interval);
+
+        // Add wanted character back to possible options
+        COLOURS.push(WANTED);
+
+        // Remove the click handler
+        canvas.removeEventListener('click', click)
+
+        // Wait 2 seconds before starting again
+        setTimeout(start, 2000);
+    }
 }
 
 start();
