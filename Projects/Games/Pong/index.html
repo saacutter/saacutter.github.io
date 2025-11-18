@@ -76,7 +76,9 @@
     <script src="game.js"></script>
     <script>
       // Determine screen size
-      window.addEventListener('resize', () => {
+      window.addEventListener('resize', resize);
+
+      function resize() {
         if (screen.width < 1000) {
           canvas.width = screen.width - 100;
           canvas.height = canvas.width*(5/8);
@@ -85,7 +87,9 @@
           canvas.style.padding = "5em";
         }
         start();
-      });
+      }
+
+      resize();
     </script>
   </body>
 </html>

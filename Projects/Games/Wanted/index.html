@@ -43,12 +43,16 @@
     <script src="game.js"></script>
     <script>
       // Determine screen size
-      window.addEventListener('resize', () => {
+      window.addEventListener('resize', resize);
+
+      function resize() {
         if (screen.width < 720) {
           canvas.width = screen.width - 30;
         }
         start();
-      });
+      }
+
+      resize();
     </script>
   </body>
 </html>

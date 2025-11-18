@@ -2,17 +2,17 @@ const canvas = document.querySelector('#screen');
 const ctx = canvas.getContext('2d');
 ctx.font = "1em Helvetica";
 
-// Define constants for the elements
-const PADDLEHEIGHT = 70;
-const PADDLEWIDTH = 7;
-const BALLRADIUS = PADDLEWIDTH;
-const FPS = 60;
-
 function start() {
     // Attempt to clear the current game by clearing the interval
     try {
         clearInterval(interval);
     } catch (Exception) {};
+
+    // Define constants for the elements
+    PADDLEHEIGHT = canvas.height / 5;
+    PADDLEWIDTH = canvas.width / 80;
+    BALLRADIUS = PADDLEWIDTH;
+    FPS = 60;
 
     // Load the font
     load_font();
@@ -22,15 +22,16 @@ function start() {
     downPress = false;
 
     // Create the paddles
+    let offset = canvas.width / 16;
     PADDLES = {
-        "player": {x: 50, y: canvas.height / 2 - PADDLEHEIGHT},
-        "ai": {x: canvas.width - 50, y: canvas.height / 2 - PADDLEHEIGHT}
+        "player": {x: offset, y: canvas.height / 2 - PADDLEHEIGHT},
+        "ai": {x: canvas.width - offset, y: canvas.height / 2 - PADDLEHEIGHT}
     };
 
     // Crete the ball
     BALL = {x: canvas.width / 2, y: canvas.height / 2};
-    balldy = 2.5;
-    balldx = 2.5;
+    balldy = canvas.height / 200;
+    balldx = canvas.width / 320;
 
     // Decide which direction the ball will start going
     if (Math.random() < 0.5) balldy = -balldy;
@@ -54,20 +55,23 @@ function draw() {
     drawBall();
 
     // Draw the scores onto the screen
+    let fontSize = canvas.width/16;
     ctx.fillStyle = "#ffffff";
-    ctx.font = "50px PongScore"
-    ctx.fillText(player_score, canvas.width / 4, 60);
-    ctx.fillText(opponent_score, (canvas.width / 4)*3, 60);
+    ctx.font = `${fontSize}px PongScore`;
+    ctx.fillText(player_score, canvas.width / 4, canvas.height / 8);
+    ctx.fillText(opponent_score, (canvas.width / 4)*3, canvas.height / 8);
 
     // Move the paddle according to the input
     move();
 
     // Adjust the ball's position
     if ((BALL.y + BALLRADIUS*2) >= canvas.height || (BALL.y - BALLRADIUS*2) < 0) {balldy = -balldy; changeYSpeed();}
+
     // Player paddle collision
     else if (((BALL.x - BALLRADIUS >= PADDLES["player"].x) && (BALL.x - BALLRADIUS <= PADDLES["player"].x + PADDLEWIDTH)) &&
              ((BALL.y - BALLRADIUS >= PADDLES["player"].y) && (BALL.y + BALLRADIUS <= PADDLES["player"].y + PADDLEHEIGHT))
     ) {balldx = -balldx; changeXSpeed();}
+
     // AI paddle collision
     else if (((BALL.x + BALLRADIUS >= PADDLES["ai"].x) && (BALL.x + BALLRADIUS <= PADDLES["ai"].x + PADDLEWIDTH)) &&
              ((BALL.y + BALLRADIUS >= PADDLES["ai"].y) && (BALL.y - BALLRADIUS <= PADDLES["ai"].y + PADDLEHEIGHT))
@@ -76,12 +80,12 @@ function draw() {
     BALL.x += balldx;
 
     // Adjust the AI paddle position
-    if (BALL.x > canvas.width / 2 && BALL.x < canvas.width - 40) {
-        if (PADDLES["ai"].y > BALL.y) PADDLES["ai"].y -= canvas.height / 75;
-        else if (PADDLES["ai"].y < BALL.y) PADDLES["ai"].y += canvas.height / 75;
+    if (BALL.x > canvas.width / 2 && BALL.x < canvas.width - PADDLES["player"].x) {
+        if ((PADDLES["ai"].y + PADDLEHEIGHT / 2) > BALL.y) PADDLES["ai"].y -= canvas.height / 75;
+        else if ((PADDLES["ai"].y + PADDLEHEIGHT / 2) < BALL.y) PADDLES["ai"].y += canvas.height / 75;
 
-        if ((PADDLES["ai"].y - 10) < 0) PADDLES["ai"].y = 10;
-        else if ((PADDLES["ai"].y + PADDLEHEIGHT + 10) > canvas.height) PADDLES["ai"].y = canvas.height - PADDLEHEIGHT - 10;
+        if ((PADDLES["ai"].y - BALLRADIUS) < 0) PADDLES["ai"].y = BALLRADIUS;
+        else if ((PADDLES["ai"].y + PADDLEHEIGHT + BALLRADIUS) > canvas.height) PADDLES["ai"].y = canvas.height - PADDLEHEIGHT - BALLRADIUS;
     }
 
     // Identify if the ball is out of bounds
@@ -114,8 +118,8 @@ function drawBall() {
 
 function gameOver() {
     BALL = {x: canvas.width / 2, y: canvas.height / 2};
-    balldy = 2.5;
-    balldx = 2.5;
+    balldy = canvas.height / 200;
+    balldx = canvas.width / 320;
 }
 
 function changeYSpeed() {
@@ -138,7 +142,7 @@ function moveUp() {
     PADDLES["player"].y -= canvas.height / 125;
 
     // Ensure the paddle cannot leave the canvas
-    if ((PADDLES["player"].y - 10) < 0) PADDLES["player"].y = 10;
+    if ((PADDLES["player"].y - BALLRADIUS) < 0) PADDLES["player"].y = BALLRADIUS;
 }
 
 function moveDown() {
@@ -146,7 +150,7 @@ function moveDown() {
     PADDLES["player"].y += canvas.height / 125;
 
     // Ensure the paddle cannot leave the canvas
-    if ((PADDLES["player"].y + PADDLEHEIGHT + 10) > canvas.height) PADDLES["player"].y = canvas.height - PADDLEHEIGHT - 10;
+    if ((PADDLES["player"].y + PADDLEHEIGHT + BALLRADIUS) > canvas.height) PADDLES["player"].y = canvas.height - PADDLEHEIGHT - BALLRADIUS;
 }
 
 // Add the events to handle the paddle movements (desktop)
