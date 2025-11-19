@@ -27,18 +27,16 @@
 :root {
   --bg-colour: #ffffff;
   --text-colour: #000000;
+  --dark-bg-colour: #2c2c2c;
+  --dark-text-colour: #ffffff;
   --program-colour: rgb(250, 240, 231);
-  --font: "Atkinson Hyperlegible", Helvetica, Arial, sans-serif;
+  --font: 'Atkinson Hyperlegible', Helvetica, Arial, sans-serif;
   --games-colour: rgb(76, 159, 248);
 }
 
 body {
   font-family: var(--font);
   min-height: 100%;
-}
-
-header {
-
 }
 
 a {
@@ -51,10 +49,10 @@ a {
   background-color: var(--program-colour);
   border-radius: 1em;
   height: 15em;
+  width: 15em;
   padding: 10px;
   display: flex;
   justify-content: center;
-  align-items: center;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -63,16 +61,11 @@ a {
 }
 
 .program {
-  width: 15em;
   align-self: center;
-  justify-content: center;
-  justify-self: center;
-  text-align: center;
 }
 
 #fb {
   background-image: url("/img/fb_preview.png");
-  /*background-position: 0px 0px; */
 }
 
 #pong {
@@ -81,18 +74,14 @@ a {
 
 #wanted {
   background-image: url("/img/wanted_preview.png");
-  background-position: -1px -1px;
 }
 
 .programs {
   display: flex;
   gap: 2em;
-  text-align: center;
   margin-top: 30vh;
-  padding-top: 20px;
-  padding-left: 10px;
   height: 20em;
-  scrollbar-width: none;
+  padding-left: 10px;
 }
 
 .container {
@@ -243,7 +232,7 @@ button:hover {
   border: 2px solid black;
   border-radius: 100%;
   background-color: #efefef;
-  transition: 0.2s ease-out;
+  transition: 0.1s ease-out;
 }
 
 .hotbar-name {
@@ -316,4 +305,8 @@ nav a {
 
 nav a:last-child {
   clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+#colour-mode {
+  display: inline-flex;
 }

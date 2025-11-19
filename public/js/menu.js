@@ -6,7 +6,8 @@ const swiper = new Swiper('.swiper', {
     },
     grabCursor: true,
     longSwipes: false,
-    slidesPerView: 3,
+    loop: true,
+    slidesPerView: 'auto',
     slideNextClass: 'swiper-slide-next',
     slidePrevClass: 'swiper-slide-prev'
 });
@@ -38,9 +39,9 @@ document.addEventListener('keydown', (event) => {
 
         // Increment the current index by 1 and simulate hovering over the next game
         curIndex += 1;
-        if (curIndex >= GAMES.length) curIndex = GAMES.length - 1;
+        if (curIndex >= GAMES.length) curIndex = 0;
         GAMES[curIndex].classList.add('programs-hover');
-        swiper.slideTo(curIndex);
+        swiper.slideToLoop(curIndex);
 
         // Make the menu controls visible
         CONTROLS.style.visibility = "visible";
@@ -53,9 +54,9 @@ document.addEventListener('keydown', (event) => {
 
         // Decrement the current index by 1 and simulate hovering over the previous game
         curIndex -= 1;
-        if (curIndex < 0) curIndex = 0;
+        if (curIndex < 0) curIndex = GAMES.length - 1;
         GAMES[curIndex].classList.add('programs-hover');
-        swiper.slideTo(curIndex);
+        swiper.slideToLoop(curIndex);
 
         // Make the menu controls visible
         CONTROLS.style.visibility = "visible";
@@ -94,3 +95,56 @@ document.querySelector('#shuffle').addEventListener('click', () => {
     let applications = document.querySelectorAll('.game');
     window.location = applications[Math.floor(Math.random() * applications.length)].href;
 });
+
+
+// Add light/dark mode button implementation
+colourMode = document.querySelector('#colour-mode');
+colourText = document.querySelector('#colour-text');
+colourMode.addEventListener('click', () => {
+    if (colourMode.getAttribute('src') == "/img/dark_mode.svg") {
+        setDark();
+        localStorage.setItem('colour-preference', 'dark');
+    } else {
+        setLight();
+        localStorage.setItem('colour-preference', 'light');
+    }
+});
+
+// Set default preference
+let preference = localStorage.getItem('colour-preference');
+if (preference == "dark") setDark();
+else if (preference == "light") setLight();
+else if (window.matchMedia('(prefers-color-scheme: dark)')) setDark();
+else setLight();
+
+// Set dark mode
+function setDark() {
+    // Set the source to light mode
+    colourMode.src = "/img/light_mode.svg";
+    colourText.innerHTML = "Light Mode";
+
+    // Get the colours for dark mode
+    let root = document.documentElement;
+    let bgColour = getComputedStyle(root).getPropertyValue('--dark-bg-colour');
+    let textColour = getComputedStyle(root).getPropertyValue('--dark-text-colour');
+
+    document.querySelector('body').style.backgroundColor = bgColour;
+    CONTROLS.style.filter = "invert(100%)";
+    document.querySelectorAll('.games-hotbar a').forEach((a) => a.style.filter = "invert(100%)");
+}
+
+// Set light mode
+function setLight() {
+    // Set the source to dark mode
+    colourMode.src = "/img/dark_mode.svg";
+    colourText.innerHTML = "Dark Mode";
+
+    // Get the colours for light mode
+    let root = document.documentElement;
+    let bgColour = getComputedStyle(root).getPropertyValue('--bg-colour');
+    let textColour = getComputedStyle(root).getPropertyValue('--text-colour');
+
+    document.querySelector('body').style.backgroundColor = bgColour;
+    CONTROLS.style.filter = "invert(0%)";
+    document.querySelectorAll('.games-hotbar a').forEach((a) => a.style.filter = "invert(0%)");
+}
