@@ -2,50 +2,54 @@
 
 <html lang="en">
     <head>
-        <title>saacutter.github.io | Calculator</title>
+        <title>saacutter.github.io/Projects/Calculator/</title>
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Static file links -->
         <link href="styles.css" rel="stylesheet">
         <script src="calculate.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.8.1/math.min.js"></script>
     </head>
     <body>
         <div class="container center">
             <div class="head">
-                <input type="text" value="0" class="display" disabled>
+                <span class="display">0</span>
             </div>
             <div class="body">
-                <div class="row">
-                    <button onclick="displayDefault()" class="clear">Clear</button>
-                    <button onclick="updateDisplay('%')" class="operation">%</button>
-                    <button onclick="updateDisplay('(')" class="operation">(</button>
-                    <button onclick="updateDisplay(')')" class="operation">)</button>
+                <div class="top-row">
+                    <button data-value="clear" class="clear">Clear</button>
+                    <button data-value="" class="clear">Delete</button>
+                    <button data-value="%" class="operation">%</button>
+                    <button data-value="(" class="operation">(</button>
+                    <button data-value=")" class="operation">)</button>
+                    <button data-value="^" class="operation">^</button>
                 </div>
-                <div class="row">
-                    <button onclick="updateDisplay(1)">1</button>
-                    <button onclick="updateDisplay(2)">2</button>
-                    <button onclick="updateDisplay(3)">3</button>
-                    <button onclick="updateDisplay(' + ')" class="operation">+</button>
-                </div>
-                <div class="row">
-                    <button onclick="updateDisplay(4)">4</button>
-                    <button onclick="updateDisplay(5)">5</button>
-                    <button onclick="updateDisplay(6)">6</button>
-                    <button onclick="updateDisplay(' - ')" class="operation">-</button>
-                </div>
-                <div class="row">
-                    <button onclick="updateDisplay(7)">7</button>
-                    <button onclick="updateDisplay(8)">8</button>
-                    <button onclick="updateDisplay(9)">9</button>
-                    <button onclick="updateDisplay(' × ')" class="operation">×</button>
-                </div>
-                <div class="row">
-                    <button onclick="updateDisplay(0)">0</button>
-                    <button onclick="updateDisplay('.')">.</button>
-                    <button onclick="calculate()">=</button>
-                    <button onclick="updateDisplay(' ÷ ')" class="operation">÷</button>
+                <div class="other-rows">
+                    <div class="row">
+                        <button data-value="1">1</button>
+                        <button data-value="2">2</button>
+                        <button data-value="3">3</button>
+                        <button data-value=" ÷ " class="operation">÷</button>
+                    </div>
+                    <div class="row">
+                        <button data-value="4">4</button>
+                        <button data-value="5">5</button>
+                        <button data-value="6">6</button>
+                        <button data-value=" × " class="operation">×</button>
+                    </div>
+                    <div class="row">
+                        <button data-value="7">7</button>
+                        <button data-value="8">8</button>
+                        <button data-value="9">9</button>
+                        <button data-value=" - " class="operation">-</button>
+                    </div>
+                    <div class="row">
+                        <button data-value="0">0</button>
+                        <button data-value=".">.</button>
+                        <button data-value="calculate">=</button>
+                        <button data-value=" + " class="operation">+</button>
+                    </div>
                 </div>
             </div>
         </div>

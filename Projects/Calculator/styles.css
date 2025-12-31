@@ -1,42 +1,27 @@
-@media screen and (min-width: 701px) {
-    .container {
-        height: 40%;
-        width: 40%;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .container {
-        height: 70%;
-        width: 100%;
-    }
-}
-
 * {
     font-family: Helvetica, Arial, sans-serif;
-    box-sizing: border-box;
     -webkit-tap-highlight-color: transparent; 
     -webkit-text-fill-color: black;
 }
 
 body {
-    margin-top: 25vh;
+    margin-top: 22.5vh;
+    margin-bottom: 22.5vh;
     background-color: rgba(100, 100, 100, 0.15);
 }
 
 button {
-    height: 80%;
-    width: 23.5%;
     border: 0px solid transparent;
     border-radius: 10px;
     font-size: 20px;
     font-weight: 600;
     transition: 0.5s ease;
+    user-select: none;
 }
 
 button:hover {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.2);
+    filter: brightness(85%);
 }
 
 .center {
@@ -46,46 +31,76 @@ button:hover {
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 50vh;
+    width: min(95vw, 400px);
     border: 2px solid black;
     border-radius: 20px;
     background-color: white;
 }
 
-.head {
-    height: 3em;
-}
-
 .display {
-    height: 100%;
-    width: 100%;
+    display: block;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-right: 0.25em;
     border: 2px solid transparent;
     border-radius: 20px 20px 0 0;
     background-color: rgba(0, 0, 0, 0.1);
     color: black;
     font-size: 30px;
     text-align: right;
+    word-wrap: break-word;
 }
 
 .body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 90%;
+    width: 100%;
+}
+
+.other-rows {
+    flex: 1;
     display: grid;
-    grid-template-rows: 5;
-    grid-template-columns: 4;
-    height: 41vh;
+    grid-template-rows: repeat(4, 1fr);
+    height: 80%;
     margin: 1em;
+    place-items: stretch;
 }
 
 .operation {
     background-color: rgba(0, 183, 255, 0.466);
 }
 
-.operation:hover {
-    background-color: rgba(0, 183, 255, 0.3);
-}
-
 .clear {
     background-color: rgba(253, 157, 157, 0.8);
 }
 
-.clear:hover {
-    background-color: rgba(253, 157, 157, 1);
+.top-row {
+    height: 10%;
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    margin: 1em 1em 0 1em;
+}
+
+div.top-row > button {
+    height: 3em;
+    width: 100%;
+    border-radius: 10em;
+    font-size: 15px;
+}
+
+.row {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.row > button {
+    margin: 0.3em;
 }
