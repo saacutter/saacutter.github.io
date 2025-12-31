@@ -58,7 +58,7 @@ navbar.forEach((nav, i) => {
     })
 });
 
-navbar[1].click();
+navbar[0].click();
 
 // Dynamically adjust how the viewport is rendered
 function resize() {

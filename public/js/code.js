@@ -7,7 +7,7 @@ document.addEventListener("keydown", (event) => {
     code.push(event.key);
 
     // Check to ensure that the constructed array is the same as the reference array
-    if (codeComplete()) window.location = "Projects/Games/" + applications[Math.floor(Math.random() * applications.length)];
+    if (codeComplete()) window.location = "/Projects/Games/" + applications[Math.floor(Math.random() * applications.length)];
     else if (code.length > reference.length) code = []; // Reset the array if the sequence is incorrect
 });
 
