@@ -32,6 +32,7 @@
   --program-colour: rgb(250, 240, 231);
   --font: 'Atkinson Hyperlegible', Helvetica, Arial, sans-serif;
   --games-colour: rgb(76, 159, 248);
+  --project-height: 30em;
 }
 
 body {
@@ -99,9 +100,18 @@ h1 {
 
 .programs > div > .programs-hover {
   margin: -5px;
-  border: 5px solid var(--games-colour);
+  border-style: solid;
+  border-width: 5px;
   transition: 0.2s ease-in;
   transform: translateY(-10px);
+}
+
+.programs-hover-dark {
+  border-color: rgb(179, 97, 23);
+}
+
+.programs-hover-light {
+  border-color: var(--games-colour);
 }
 
 .program > h1 {
@@ -149,7 +159,7 @@ h1 {
 .project-selected {
   transition: all 0.2s ease-in;
   width: 30%;
-  height: 15em !important;
+  height: var(--project-height) !important;
   border: 5px solid white;
 }
 
@@ -165,7 +175,7 @@ li {
   list-style-type: none;
   position: relative;
   margin: 3px;
-  height: 15em;
+  height: var(--project-height);
 }
 
 .projects {
@@ -202,15 +212,24 @@ button:hover {
 
 .projects > li:not(.project-selected) h3 {
   transform: rotate(-90deg);
-  width: 9em;
+  width: calc(2*(var(--project-height) / 3));
   position: absolute;
-  left: -300%;
-  top: 45%;
+  left: -730%;
+  top: 50%;
   transition: none;
 }
 
 .projects > li.project-selected h3 {
   display: none;
+}
+
+.project-details > p {
+  overflow-y: auto;
+  margin: 1em;
+}
+
+.project-details {
+  height: 50%;
 }
 
 .games-hotbar {
@@ -294,8 +313,9 @@ nav {
 }
 
 nav a {
+  width: 2em;
   padding: 1em;
-  clip-path: polygon(20%0%, 100% 0%, 80% 100%, 0% 100%);
+  clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
 }
 
 .navbar-selected {
@@ -304,6 +324,7 @@ nav a {
 }
 
 nav a:last-child {
+  width: 2em;
   clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 

@@ -1,19 +1,10 @@
-const p = document.querySelector('#p-projects');
-const pProjects = p.querySelectorAll('li');
+const projects = document.querySelectorAll('ul.projects li');
 
-const u = document.querySelector('#u-projects');
-const uProjects = u.querySelectorAll('li');
+const defaultHeight = projects[0].getBoundingClientRect().height;
 
-const defaultHeight = pProjects[0].getBoundingClientRect().height;
-
-for (let i = 0; i < pProjects.length; i++) {
-    pProjects[i].classList.add('project');
-    pProjects[i].addEventListener('click', () => {click(pProjects[i], i, pProjects)});
-}
-
-for (let i = 0; i < uProjects.length; i++) {
-    uProjects[i].classList.add('project');
-    uProjects[i].addEventListener('click', () => {click(uProjects[i], i, uProjects)});
+for (let i = 0; i < projects.length; i++) {
+    projects[i].classList.add('project');
+    projects[i].addEventListener('click', () => {click(projects[i], i, projects)});
 }
 
 // Function for deciding clicks
@@ -67,24 +58,21 @@ navbar.forEach((nav, i) => {
     })
 });
 
-navbar[0].click();
+navbar[1].click();
 
 // Dynamically adjust how the viewport is rendered
 function resize() {
     const divs = document.querySelectorAll('ul');
     if (window.innerWidth <= 800) {
         divs.forEach((div) => div.classList.add('project-grid'));
-        divs.forEach((div) => div.classList.remove('pProjects'));
+        divs.forEach((div) => div.classList.remove('projects'));
     } else {
-        divs.forEach((div) => div.classList.add('pProjects'));
+        divs.forEach((div) => div.classList.add('projects'));
         divs.forEach((div) => div.classList.remove('project-grid'));
 
         // Select the middle project
-        let middle = Math.floor((pProjects.length - 1) / 2);
-        pProjects[middle].click();
-
-        middle = Math.floor((uProjects.length - 1) / 2);
-        uProjects[middle].click();
+        let middle = Math.floor((projects.length - 1) / 2);
+        projects[middle].click();
     }
 }
 

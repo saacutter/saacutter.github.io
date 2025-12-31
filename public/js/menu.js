@@ -21,15 +21,21 @@ let curIndex = -1;
 // Add the hover effects when any game is hovered over
 GAMES.forEach((game, index) => game.addEventListener('mouseover', () => {
     removeCurrentlySelected();
+
+    // Add the specified class and make the controls visible
     game.classList.add('programs-hover');
     CONTROLS.style.visibility = "visible";
+
+    //
+    if (localStorage.getItem('colour-preference') == "dark") game.classList.add('programs-hover-dark');
+    else game.classList.add('programs-hover-light')
+
+    // Adjust the index
     curIndex = index;
 }));
 
 // Remove the hover effect when the game is unhovered
-GAMES.forEach((game) => game.addEventListener('mouseout', () => {
-    removeCurrentlySelected();
-}));
+GAMES.forEach((game) => game.addEventListener('mouseout', () => removeCurrentlySelected()));
 
 document.addEventListener('keydown', (event) => {
     let key = event.key;

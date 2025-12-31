@@ -45,7 +45,6 @@ function start() {
 
 function draw() {
     // Clear the background
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.rect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
     ctx.fill();
