@@ -1,0 +1,12 @@
+{
+    "routes": [
+        {
+            "src": "/calculator",
+            "dest": "https://calculator-two-rho-59.vercel.app/"
+        },
+        {
+            "src": "/grades",
+            "dest": "https://grade-calculator-two-lime.vercel.app/"
+        }
+    ]
+}
