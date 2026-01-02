@@ -253,8 +253,8 @@ button {
   border-radius: 4px;
   font-family: var(--font);
   font-weight: bolder;
-  height: 3vh;
-  width: 10vw;
+  height: 2em;
+  width: 8em;
   cursor: pointer;
   transition: 0.25s ease-out;
 }
