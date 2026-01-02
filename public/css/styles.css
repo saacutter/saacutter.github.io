@@ -65,18 +65,6 @@ a {
   align-self: center;
 }
 
-#fb {
-  background-image: url("/img/fb_preview.png");
-}
-
-#pong {
-  background-image: url("/img/pong_preview.png");
-}
-
-#wanted {
-  background-image: url("/img/wanted_preview.png");
-}
-
 .programs {
   display: flex;
   gap: 2em;
@@ -138,100 +126,6 @@ h1 {
   cursor: pointer;
 }
 
-.project {
-  height: 15em;
-  width: 1.5em;
-  max-width: 25vw;
-  background-color: grey;
-  transition: all 0.2s ease-in;
-}
-
-.project:hover {
-  transform: scale(1.05) !important;
-  transition: all 0.25s ease-out;
-}
-
-.project > h3 {
-  user-select: none;
-  margin: 0em;
-}
-
-.project-selected {
-  transition: all 0.2s ease-in;
-  width: 30%;
-  height: var(--project-height) !important;
-  border: 5px solid white;
-}
-
-.projects > li:not(.project-selected) .project-details {
-  display: none;
-}
-
-.project-grid {
-
-}
-
-li {
-  list-style-type: none;
-  position: relative;
-  margin: 3px;
-  height: var(--project-height);
-}
-
-.projects {
-  display: flex;
-  text-align: center;
-}
-
-button {
-  background-color: transparent;
-  color: white;
-  border: 2px solid grey;
-  border-radius: 4px;
-  font-family: var(--font);
-  font-weight: bolder;
-  height: 3vh;
-  width: 10vw;
-  cursor: pointer;
-  transition: 0.25s ease-out;
-}
-
-button:hover {
-  transform: scale(1.01);
-}
-
-.buttons {
-  display: flex;
-  gap: 1em;
-  position: absolute;
-  bottom: 10px;
-  justify-self: center;
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
-.projects > li:not(.project-selected) h3 {
-  transform: rotate(-90deg);
-  width: calc(2*(var(--project-height) / 3));
-  position: absolute;
-  left: -730%;
-  top: 50%;
-  transition: none;
-}
-
-.projects > li.project-selected h3 {
-  display: none;
-}
-
-.project-details > p {
-  overflow-y: auto;
-  margin: 1em;
-}
-
-.project-details {
-  height: 50%;
-}
-
 .games-hotbar {
   margin: 0.5em;
   display: flex;
@@ -282,12 +176,16 @@ button:hover {
 
 }
 
-#home {
+main {
+  flex: 1;
+  background-color: var(--bg-colour);
+}
+
+main > div.container {
   width: 100%;
-  background-color: rgb(255, 255, 255);
   color: black;
-  padding-top: 2em;
-  padding-bottom: 4em;
+  padding-top: 0.5em;
+  padding-bottom: 1em;
 }
 
 #games-sep {
@@ -330,4 +228,43 @@ nav a:last-child {
 
 #colour-mode {
   display: inline-flex;
+}
+
+li {
+  list-style-type: none;
+  text-align: left;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 3em;
+  margin-right: 3em;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+li > h2 {
+  margin: 0;
+}
+
+button {
+  background-color: white;
+  color: black;
+  border: 2px solid grey;
+  border-radius: 4px;
+  font-family: var(--font);
+  font-weight: bolder;
+  height: 3vh;
+  width: 10vw;
+  cursor: pointer;
+  transition: 0.25s ease-out;
+}
+
+button:hover {
+  transform: scale(1.01);
+  filter: brightness(90%);
+}
+
+.buttons {
+  display: flex;
+  gap: 1em;
 }
