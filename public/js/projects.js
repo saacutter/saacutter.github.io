@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const url = new URL(window.location.href);
+
     // Handle navbar categories
     const navbar = document.querySelectorAll('nav a');
     const categories = document.querySelectorAll('div.container');
@@ -20,8 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Make the corresponding category visible
             categories[i].style.display = 'block';
+
+            // Push the new URL to history
+            window.history.pushState({}, '', `?view=${nav.id}`)
         })
     });
 
-    navbar[0].click();
+    // Set the search parameters
+    const params = url.searchParams;
+    let view = params.get('view') || 'home';
+    document.querySelector(`#${view}`).click();
 });
