@@ -102,7 +102,7 @@
             <div class="container">
                 <div class="centered">
                     {% for post in posts %}
-                        <a href="/blog/{{ post.mtime.year }}/{{ post.mtime.month }}/{{ post.mtime.day }}/{{ post.title.lower() }}" class="post-entry">{{ post.title }}</a>
+                        <a href="/blog/{{ '%02d' | format(post.mtime.year) }}/{{ '%02d' | format(post.mtime.month) }}/{{ '%02d' | format(post.mtime.day) }}/{{ post.title.lower() }}" class="post-entry">{{ post.title }}</a>
                     {% endfor %}
                 </div>
             </div>
