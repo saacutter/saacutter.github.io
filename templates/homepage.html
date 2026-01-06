@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block title %}saacutter.github.io{% endblock %}
+
 {% block head %}
 <script src="/js/projects.js"></script>
 {% endblock %}
@@ -57,7 +61,7 @@
                     <li>
                         <h2>Calculator</h2>
                         <div>
-                            <p>This is a basic calculator which I developed to learn HTML, CSS, and JavaScript. </p>
+                            <p>This is a basic calculator which I developed to learn HTML, CSS, and JavaScript.</p>
                             <div class="buttons">
                                 <a href="/calculator/"><button>Project Demo</button></a>
                                 <a href="https://github.com/saacutter/Calculator"><button>Source Code</button></a>
@@ -96,8 +100,10 @@
                 </ul>
             </div>
             <div class="container">
-                {% for post in posts %}
-                    <p>{{ post }}</p>
-                {% endfor %}
+                <div class="centered">
+                    {% for post in posts %}
+                        <a href="/blog/{{ post.mtime.year }}/{{ post.mtime.month }}/{{ post.mtime.day }}/{{ post.title.lower() }}" class="post-entry">{{ post.title }}</a>
+                    {% endfor %}
+                </div>
             </div>
 {% endblock %}

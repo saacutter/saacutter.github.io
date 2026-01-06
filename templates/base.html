@@ -2,7 +2,7 @@
 
 <html lang="en">
     <head>
-        <title>{{ title }}</title>
+        <title>{% block title %}{% endblock %}</title>
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,7 @@
             }
         </style>
 
-        {{ head }}
+        {% block head %}{% endblock %}
     </head>
     <body>
         <header>
@@ -33,7 +33,7 @@
             </nav>
         </header>
         <main>
-            {{ body }}
+            {% block body %}{% endblock %}
         </main>
         <footer>
             <div class="centered">

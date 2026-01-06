@@ -276,3 +276,16 @@ button:hover {
   display: flex;
   gap: 1em;
 }
+
+.colour-mode {
+  background-color: grey;
+  margin: 10px;
+}
+
+.post-entry {
+  display: block;
+  color: black;
+  padding: 1em;
+  border: 2px solid black;
+  margin: 1em;
+}

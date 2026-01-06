@@ -1,14 +1,16 @@
 {
     "routes": [
         {
-            "src": "/calculator/(.*)",
-            "dest": "https://calculator-two-rho-59.vercel.app/$1",
-            "status": 200
+            "src": "^/calculator/(.*)$",
+            "dest": "https://calculator-two-rho-59.vercel.app/$1"
         },
         {
-            "src": "/grades/(.*)",
-            "dest": "https://grade-calculator-two-lime.vercel.app/$1",
-            "status": 200
+            "src": "^/grades/(.*)$",
+            "dest": "https://grade-calculator-two-lime.vercel.app/$1"
+        },
+        {
+            "src": "^/blog/([0-9]{4})/([0-9]{2})/([0-9]{2})/(.*)$",
+            "dest": "/$1/$2/$3/$4.html"
         }
     ]
 }
