@@ -1,0 +1,2 @@
+# Ignore the homepage when committing because the server creates it regardless
+public/index.html
