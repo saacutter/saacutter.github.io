@@ -1,40 +1,11 @@
-<!DOCTYPE html>
+import os
+from jinja2 import Environment, FileSystemLoader
 
-<html lang="en">
-    <head>
-        <title></title>
-        
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link href="/css/styles.css" rel="stylesheet">
-        <script src="/js/projects.js"></script>
-        <script src="/js/colourmode.js"></script>
-        <style>
-            body { /* Adapted from https://stackoverflow.com/questions/17054158/css-100-height-with-header-and-footer */
-                background-color: #010101;
-                color: white;
-                display: flex;
-                flex-direction: column;
-                min-height: 100dvh;
-            }
-        </style>
-
-        
-    </head>
-    <body>
-        <header>
-            <a>
-                <img src="" class="colour-mode" id="colour-mode">
-            </a>
-            <nav>
-                <a style="left: 17%;" id="home">Home</a>
-                <a style="left: 8.5%;" id="projects">Projects</a>
-                <a id="blog">Blog</a>
-            </nav>
-        </header>
-        <main>
-            <div class="container">
+def render_homepage():
+    env = Environment(loader=FileSystemLoader('templates'))
+    template = env.get_template("base.html")
+    output = template.render(body = 
+        """<div class="container">
                 <img src="/img/mii.png" id="mii">
                 <p class="centered">This is some text.</p>
             </div>
@@ -129,17 +100,9 @@
             <div class="container">
                 <!-- For blog posts, eventually -->
                 <h1 style="color: black; background-color: yellow; text-align: center; padding: 2em;">This section is still under construction.</h1>
-            </div>
-        </main>
-        <footer>
-            <div class="centered">
-                <a href="https://github.com/saacutter" class="icon" id="github">
-                    <img src="/img/github-white.svg">
-                </a>
-                <a href="https://www.linkedin.com/in/isaac-rutter/" class="icon" id="linkedin">
-                    <img src="/img/linkedin-white.png">
-                </a>
-            </div>
-        </footer>
-    </body>
-</html>
+            </div>""")
+
+    with open("public/index.html", "w") as file:
+        file.write(output)
+
+render_homepage()
