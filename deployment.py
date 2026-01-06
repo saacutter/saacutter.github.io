@@ -1,108 +1,30 @@
 import os
+import datetime
 from jinja2 import Environment, FileSystemLoader
 
+POSTS = []
+
+def get_posts():
+    global POSTS
+    for root, dirs, files in os.walk("blog/"):
+        for file in files:
+            POSTS.append(f'{root}{file}')
+
 def render_homepage():
-    env = Environment(loader=FileSystemLoader('templates'))
-    template = env.get_template("base.html")
-    output = template.render(body = 
-        """<div class="container">
-                <img src="/img/mii.png" id="mii">
-                <p class="centered">This is some text.</p>
-            </div>
-            <div class="container">
-                <ul style="padding-left: 0;">
-                    <li>
-                        <h2>Mini-Language Transpiler</h2>
-                        <div>
-                            <p>This was the first project developed for CITS2002 (Systems Programming) in semester 2 2024. The goal of the project was to implement a C11 program which compiled and executed the code of a non-existent mini programming language.</p>
-                            <div class="buttons">
-                                <a href="https://github.com/saacutter/minilang-transpiler"><button>Source Code</button></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <h2>Virtual Memory Simulation</h2>
-                        <div>
-                            <p>This was the second project developed for CITS2002 (Systems Programming) in semester 2 2024. The goal of this project was to simulate a virtual memory system using an array as the RAM of some universal Turing machine.</p>
-                            <div class="buttons">
-                                <a href=""><button>Source Code</button></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <h2>Tournament Manager</h2>
-                        <div>
-                            <p>This was the project developed for CITS3403 (Agile Web Development) in semester 1 2025. This is a web application using the Flask framework that allows users to upload data from their played tournaments and share that with friends.</p>
-                            <div class="buttons">
-                                <a href="https://github.com/saacutter/tournament-manager"><button>Source Code</button></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <h2>Australian Employment Trends</h2>
-                        <div>
-                            <p>This was the project developed for CITS2402 (Introduction to Data Science) in semester 2 2025. It compares the employment trends in Australia using Census data from the ABS from 2016 and 2021.</p>
-                            <div class="buttons">
-                                <a href="https://github.com/saacutter/census-employment-trends"><button>Source Code</button></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <h2>The Diplomacy Agent</h2>
-                        <div>
-                            <p>This was the project developed for CITS3011 (Intelligent Agents) in semester 2 2025. This is an agent that can play the popular strategy board game The Diplomacy.</p>
-                            <div class="buttons">
-                                <a href="https://github.com/saacutter/diplomacy-agent"><button>Source Code</button></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <h2>Calculator</h2>
-                        <div>
-                            <p>This is a basic calculator which I developed to learn HTML, CSS, and JavaScript. </p>
-                            <div class="buttons">
-                                <a href="/calculator/"><button>Project Demo</button></a>
-                                <a href="https://github.com/saacutter/Calculator"><button>Source Code</button></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <h2>Grade Calculator</h2>
-                        <div>
-                            <p>TEMPORARY</p>
-                            <div class="buttons">
-                                <a href="/grades/"><button>Project Demo</button></a>
-                                <a href="https://github.com/saacutter/Grade-Calculator"><button>Source Code</button></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <h2>Password Manager</h2>
-                        <div>
-                            <p>TEMPORARY</p>
-                            <div class="buttons">
-                                <a href="/Projects/PasswordManager/password.html"><button>Project Demo</button></a>
-                                <a href="https://github.com/saacutter/Password-Manager"><button>Source Code</button></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <h2>Games</h2>
-                        <div>
-                            <p>This is a collection of small games that I have developed to learn how to use the <code>canvas</code> HTML element. It is mostly a collection of arcade-style games written in JavaScript.</p>
-                            <div class="buttons">
-                                <a href="/Projects/Games/menu.html"><button>Check it Out</button></a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="container">
-                <!-- For blog posts, eventually -->
-                <h1 style="color: black; background-color: yellow; text-align: center; padding: 2em;">This section is still under construction.</h1>
-            </div>""")
+    env = Environment(loader=FileSystemLoader("templates"))
+    base = env.get_template("base.html")
+    homepage = env.get_template("_homepage.html")
+    output = base.render(title="saacutter.github.io", body = homepage.render(posts = POSTS))
 
     with open("public/index.html", "w") as file:
         file.write(output)
 
-render_homepage()
+    print("The homepage has successfully been created.")
+
+def render_post():
+    env = Environment(loader=FileSystemLoader("templates"))
+    base = env.get_template("base.html")
+
+if __name__ == '__main__':
+    get_posts()
+    render_homepage()
