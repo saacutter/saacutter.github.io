@@ -3,3 +3,7 @@ public/index.html
 
 # Ignore all blog files created in the public directory because the server creates them regardless
 public/blog/**
+
+# Ignore vercel files
+.vercel
+.env*.local

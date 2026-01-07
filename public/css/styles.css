@@ -217,6 +217,7 @@ nav {
 }
 
 nav a {
+  color: var(--dark-text-colour);
   display: inline-block;
   width: 4em;
   text-align: center;
@@ -226,8 +227,8 @@ nav a {
 }
 
 .navbar-selected {
-  background-color: white;
-  color: black;
+  background-color: var(--bg-colour);
+  color: var(--text-colour);
 }
 
 nav a:last-child {
