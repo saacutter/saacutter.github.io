@@ -7,3 +7,5 @@ public/blog/**
 # Ignore vercel files
 .vercel
 .env*.local
+
+.venv

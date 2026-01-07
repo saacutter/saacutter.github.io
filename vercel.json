@@ -1,5 +1,10 @@
 {
+    "$schema": "https://openapi.vercel.sh/vercel.json",
     "routes": [
+        {
+            "src": "^/games/?(.*)$",
+            "dest": "/Projects/Games/menu.html"
+        },
         {
             "src": "^/calculator/(.*)$",
             "dest": "https://calculator-two-rho-59.vercel.app/$1"
@@ -12,5 +17,6 @@
             "src": "^/([0-9]{4})/([0-9]{2})/([0-9]{2})/(.*)$",
             "dest": "/blog/$1/$2/$3/$4.html"
         }
-    ]
+    ],
+    "cleanURLs": true
 }
