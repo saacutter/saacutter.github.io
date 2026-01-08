@@ -18,7 +18,7 @@ def get_posts():
             path = os.path.join(root, file)
 
             # Get the modification date of the file
-            mtime = datetime.datetime.fromtimestamp(os.path.getctime(path))
+            mtime = datetime.date.fromtimestamp(os.path.getctime(path))
 
             # Append the post (and its attributes) to the list of posts
             POSTS.append({"filename": file, "path": path, "mtime": mtime})
@@ -54,24 +54,15 @@ def render_posts():
         with open(post["path"], "r") as file:
             content = file.read()
 
-        # If the post does not have frontmatter skip it, otherwise use default values
-        if content.startswith("---"):
-            frontmatter, content = [x for x in content.split("---", 2) if x != ""]
-            frontmatter = yaml.safe_load(frontmatter)
-        else:
-            print(f"The post {post["filename"]} does not have frontmatter. Using default values instead.")
-            frontmatter = {}
+        # Load the frontmatter and content of the post
+        frontmatter, content = [x for x in content.split("---", 2) if x != ""]
+        frontmatter = yaml.safe_load(frontmatter)
 
         # Add the frontmatter attributes to the post's state
-        post["title"] = frontmatter.get("title", post["filename"].replace(".md", ""))
-        post["slug"] = frontmatter.get("slug", post["filename"].lower().replace(" ", "-"))
-        post["created"] = frontmatter.get("created", post["mtime"])
+        post["meta"] = frontmatter
         post["content"] = markdown(content)
 
-        # If the post has been updated, 
-
         # Render the post using the template
-        print(post)
         output = post_template.render(post=post)
 
         # Create the path of the output render and make the directory

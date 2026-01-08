@@ -1,0 +1,29 @@
+name: Update Post Frontmatter
+
+on: push
+
+jobs:
+  updatefrontmatter:
+    if: github.actor != "github-actions[bot]"
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - run: |
+          python -m pip install --upgrade pip
+          python update_posts.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          changed=$(git diff --cached --name-only)
+          git commit -m "Updated frontmatter of the files ${changed}" || exit 0
+          git push

@@ -89,7 +89,7 @@
             <div class="container">
                 <div class="centered">
                     {% for post in posts %}
-                        <a href="/{{ '%02d' | format(post.mtime.year) }}/{{ '%02d' | format(post.mtime.month) }}/{{ '%02d' | format(post.mtime.day) }}/{{ post.filename.lower().replace('.md', '') }}" class="post-entry">{{ post.filename.lower().replace('.md', '') }}</a>
+                        <a href="/{{ '%02d' | format(post.meta.created.year) }}/{{ '%02d' | format(post.meta.created.month) }}/{{ '%02d' | format(post.meta.created.day) }}/{{ post.meta.slug }}" class="post-entry">{{ post.meta.title }}</a>
                     {% endfor %}
                 </div>
             </div>
