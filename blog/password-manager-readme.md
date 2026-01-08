@@ -1,9 +1,11 @@
 ---
-title: "Password Manager"
-slug: "password-manager-readme"
-created: 7/01/2026
-updated: ""
+filename: password-manager-readme.md
+title: Password Manager
+slug: password-manager-readme
+created: 2026-01-07
+updated: 2026-01-08
 ---
+
 
 
 # Password Manager

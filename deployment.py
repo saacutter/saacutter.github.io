@@ -70,13 +70,13 @@ def render_posts():
         os.makedirs(path, exist_ok=True)
 
         # Write the render to a file
-        with open(f"{os.path.join(path, post["slug"])}.html", "w") as file:
+        with open(f"{os.path.join(path, post["meta"]["slug"])}.html", "w") as file:
             file.write(output)
         
-        print(f"The page for the post {post["title"]} has successfully been created.")
+        print(f"The page for the post {post["meta"]["title"]} has successfully been created.")
 
 
 if __name__ == '__main__':
     get_posts()
-    render_homepage()
     render_posts()
+    render_homepage()
