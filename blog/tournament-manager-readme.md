@@ -1,3 +1,11 @@
+---
+filename: tournament-manager-readme.md
+title: tournament-manager-readme
+slug: tournament-manager-readme
+created: 2026-01-09
+updated: ''
+---
+
 # Tournament Manager (Group 17)
 Our new Tournament Manager helps you create, manage, and track competitive tournaments with ease. Whether you're organising local gaming events, online challenges, or just 
 tracking friendly rivalries, our platform has you covered for all of your needs. This application has the following supported features:

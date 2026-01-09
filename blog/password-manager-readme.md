@@ -3,10 +3,8 @@ filename: password-manager-readme.md
 title: Password Manager
 slug: password-manager-readme
 created: 2026-01-07
-updated: 2026-01-08
+updated: 2026-01-09
 ---
-
-
 
 # Password Manager
 
