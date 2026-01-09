@@ -66,7 +66,7 @@ def render_posts():
         output = post_template.render(post=post)
 
         # Create the path of the output render and make the directory
-        path = os.path.join("public", "blog", f"{post["mtime"].year:02}", f"{post["mtime"].month:02}", f"{post["mtime"].day:02}")
+        path = os.path.join("public", "blog", f"{post["meta"]["created"].year:02}", f"{post["meta"]["created"].month:02}", f"{post["meta"]["created"].day:02}")
         os.makedirs(path, exist_ok=True)
 
         # Write the render to a file

@@ -37,9 +37,8 @@ def update_posts():
             with open(path, "w") as write_file:
                 write_file.write("---\n")
                 yaml.safe_dump(post, write_file, default_flow_style=False, sort_keys=False)
-                write_file.write("---\n")
-                if not content.startswith("\n"): write_file.write("\n")
-                write_file.write(content)
+                write_file.write("---\n\n")
+                write_file.write(content.lstrip("\n"))
 
 
 if __name__ == '__main__':
