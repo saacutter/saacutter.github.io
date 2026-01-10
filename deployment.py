@@ -29,6 +29,7 @@ def get_posts():
 
 def render_homepage():
     global ENV
+    print("The homepage is now being created.")
 
     # Get the homepage template and render it
     homepage = ENV.get_template("homepage.html")
@@ -50,6 +51,8 @@ def render_posts():
 
     # Render every post
     for post in POSTS:
+        print(f"The post located at {post["path"]} is now being created.")
+
         # Read the contents of the post
         with open(post["path"], "r") as file:
             content = file.read()
