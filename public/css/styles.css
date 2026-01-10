@@ -289,4 +289,16 @@ button:hover {
   padding: 1em;
   border: 2px solid black;
   margin: 1em;
+  text-align: left;
+}
+
+@media screen and  (max-width: 460px) {
+  nav {
+    font-size: 10px;
+  }
+
+  nav a {
+    vertical-align: middle;
+    padding: 1.8em;
+  }
 }

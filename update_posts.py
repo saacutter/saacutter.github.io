@@ -13,25 +13,38 @@ def update_posts():
             with open(path, "r") as read_file:
                 content = read_file.read()
 
-            # If the post does not have frontmatter skip it, otherwise use default values
+            # If the post has frontmatter use it, otherwise create it
             if content.startswith("---"):
                 frontmatter, content = [x for x in content.split("---", 2) if x != ""]
                 frontmatter = yaml.safe_load(frontmatter)
             else:
                 frontmatter = {}
 
-            mtime = datetime.date.fromtimestamp(os.path.getctime(path))
-
             # Add the frontmatter attributes to the post's state
+            mtime = datetime.datetime.fromtimestamp(os.path.getctime(path))
             post = {}
             post["filename"] = file
             post["title"] = frontmatter.get("title", post["filename"].replace(".md", ""))
             post["slug"] = frontmatter.get("slug", post["title"].lower().replace(" ", "-"))
             post["created"] = frontmatter.get("created", mtime)
+            post["updated"] = frontmatter.get("updated", "")
+
+            # If the creation time is not a datetime, convert it into one
+            ctime = post["created"]
+            if not isinstance(ctime, datetime.datetime): post["created"] = datetime.datetime(ctime.year, ctime.month, ctime.day)
+
+            # If the updated time is not a datetime, conver it into one
+            utime = post["updated"]
+            if utime != "" and not isinstance(utime, datetime.datetime): post["updated"] = datetime.datetime(utime.year, utime.month, utime.day)
 
             # If the post has been updated, set the updated date to the most recent modification date
-            if mtime > post["created"]: post["updated"] = mtime
-            else: post["updated"] = ""
+            if (mtime > post["created"] and post["updated"] == "") or mtime - datetime.timedelta(minutes=10) > post["updated"]: post["updated"] = mtime
+
+            # If the updated time is further than the current date, set it to the last modified time of the file
+            if post["updated"] > datetime.datetime.now(): post["updated"] = mtime
+
+            # If the frontmatter did not change then don't write to the file
+            if frontmatter == post: continue
 
             # Write the updated yaml to the file
             with open(path, "w") as write_file:

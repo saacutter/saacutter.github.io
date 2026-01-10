@@ -18,7 +18,7 @@ def get_posts():
             path = os.path.join(root, file)
 
             # Get the modification date of the file
-            mtime = datetime.date.fromtimestamp(os.path.getctime(path))
+            mtime = datetime.datetime.fromtimestamp(os.path.getctime(path))
 
             # Append the post (and its attributes) to the list of posts
             POSTS.append({"filename": file, "path": path, "mtime": mtime})
@@ -64,6 +64,9 @@ def render_posts():
         # Add the frontmatter attributes to the post's state
         post["meta"] = frontmatter
         post["content"] = markdown(content)
+
+        # If the post has an empty updated field, ignore it
+        if post["meta"]["updated"] == "": del post["meta"]["updated"]
 
         # Render the post using the template
         output = post_template.render(post=post)

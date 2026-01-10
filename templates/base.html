@@ -27,12 +27,14 @@
             <a>
                 <img src="" class="colour-mode" id="colour-mode">
             </a>
-            <nav>
-                <a style="left: 19.5%;" id="home" href="/?view=home">Home</a>
-                <a style="left: 13%;" id="projects" href="/?view=projects">Projects</a>
-                <a style="left: 6.5%;" id="blog" href="/?view=blog">Blog</a>
-                <a id="games" href="/games">Games</a>
-            </nav>
+            <div style="margin-left: auto;">
+                <nav style="display: flex;">
+                    <a style="left: 16.5%;" id="home" href="/?view=home">Home</a>
+                    <a style="left: 11%;" id="projects" href="/?view=projects">Projects</a>
+                    <a style="left: 5.5%;" id="blog" href="/?view=blog">Blog</a>
+                    <a id="games" href="/games">Games</a>
+                </nav>
+            </div>
         </header>
         <main>
             {% block body %}{% endblock %}
