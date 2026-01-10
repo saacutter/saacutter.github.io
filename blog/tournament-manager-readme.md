@@ -2,8 +2,8 @@
 filename: tournament-manager-readme.md
 title: tournament-manager-readme
 slug: tournament-manager-readme
-created: 2026-01-09
-updated: 2026-01-10
+created: 2026-01-09 00:00:00
+updated: 2026-01-10 13:15:04.610570
 ---
 
 # Tournament Manager (Group 17)
