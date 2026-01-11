@@ -3,7 +3,14 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
-            <article class="centered">
-                {{ post.content }}
-            </article>
+            <div class="centered">
+                <header>
+                    <h1>{{ post.meta.title }}</h1>
+                    <p>{{ post.meta.created.strftime('%d/%m/%Y') }} {% if "updated" in post.meta %}<span>(Updated on {{ post.meta.updated.strftime('%d/%m/%Y') }} at {{ post.meta.updated.strftime('%I:%M%p') }} UTC)</span>{% endif %}</p>
+                </header>
+                <hr style="width: 70%; border: 1px solid black;">
+                <article class="centered post">
+                    {{ post.content }}
+                </article>
+            </div>
 {% endblock %}

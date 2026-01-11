@@ -23,7 +23,7 @@
         {% block head %}{% endblock %}
     </head>
     <body>
-        <header>
+        <header class="base">
             <a>
                 <img src="" class="colour-mode" id="colour-mode">
             </a>
@@ -48,6 +48,7 @@
                     <img src="/img/linkedin-white.png">
                 </a>
             </div>
+            <p class="centered" style="color:white;">© {{ datetime.date.today().year }} Isaac Rutter</p>
         </footer>
     </body>
 </html>

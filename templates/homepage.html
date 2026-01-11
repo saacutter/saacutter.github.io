@@ -8,7 +8,7 @@
                 <p class="centered">This is some text.</p>
             </div>
             <div class="container">
-                <ul style="padding-left: 0;">
+                <ul id="projects-list" style="padding-left: 0;">
                     <li>
                         <h2>Mini-Language Transpiler</h2>
                         <div>
@@ -91,7 +91,7 @@
                     {% for post in posts %}
                         <a href="/{{ '%02d' | format(post.meta.created.year) }}/{{ '%02d' | format(post.meta.created.month) }}/{{ '%02d' | format(post.meta.created.day) }}/{{ post.meta.slug }}" class="post-entry">
                             <p>{{ post.meta.title }}</p>
-                            <p>{{ post.meta.created.strftime('%d/%m/%Y') }} {% if "updated" in post.meta %}<span>(Updated on {{ post.meta.updated.strftime('%d/%m/%Y') }} at {{ post.meta.updated.strftime('%I:%M%p') }})</span>{% endif %}</p>
+                            <p>{{ post.meta.created.strftime('%d/%m/%Y') }} {% if "updated" in post.meta %}<span>(Updated on {{ post.meta.updated.strftime('%d/%m/%Y') }} at {{ post.meta.updated.strftime('%I:%M%p') }} UTC)</span>{% endif %}</p>
                         </a>
                     {% endfor %}
                 </div>
