@@ -1,6 +1,7 @@
 import os
 import datetime
 import yaml
+import hashlib
 
 def update_posts():
     POSTS = []
@@ -28,20 +29,31 @@ def update_posts():
             post["slug"] = frontmatter.get("slug", post["title"].lower().replace(" ", "-"))
             post["created"] = frontmatter.get("created", mtime)
             post["updated"] = frontmatter.get("updated", "")
+            post["hash"] = frontmatter.get("hash", "")
 
             # If the creation time is not a datetime, convert it into one
             ctime = post["created"]
             if not isinstance(ctime, datetime.datetime): post["created"] = datetime.datetime(ctime.year, ctime.month, ctime.day)
 
-            # If the updated time is not a datetime, conver it into one
+            # If the updated time is not a datetime, convert it into one
             utime = post["updated"]
             if utime != "" and not isinstance(utime, datetime.datetime): post["updated"] = datetime.datetime(utime.year, utime.month, utime.day)
 
-            # If the post has been updated, set the updated date to the most recent modification date
-            if (mtime > post["created"] and post["updated"] == "") or mtime - datetime.timedelta(minutes=10) > post["updated"]: post["updated"] = mtime
-
             # If the updated time is further than the current date, set it to the last modified time of the file
             if post["updated"] > datetime.datetime.now(): post["updated"] = mtime
+
+            # If the post has been updated, set the updated date to the most recent modification date
+            if (mtime > post["created"] and post["updated"] == "") or mtime > post["updated"]:
+                # Calculate the SHA-256 hash of the file (adapted from https://www.geeksforgeeks.org/python/how-to-detect-file-changes-using-python/)
+                with open(path, "rb") as byte_file:
+                    file_bytes = byte_file.read()
+                file_bytes = file_bytes.split(b"---", 2)[2]
+                file_hash = hashlib.sha256(file_bytes).hexdigest()
+
+                # If the hashes don't match, then update the modification time
+                if post["hash"] == "" or post["hash"] != file_hash:
+                    post["updated"] = mtime
+                    post["hash"] = file_hash
 
             # If the frontmatter did not change then don't write to the file
             if frontmatter == post: continue

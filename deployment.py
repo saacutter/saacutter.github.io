@@ -6,6 +6,7 @@ import yaml
 
 POSTS = []
 ENV = Environment(loader=FileSystemLoader("templates"))
+ENV.globals['datetime'] = datetime # Make the datetime module available to templates
 
 def get_posts():
     # Ensure that the global variable is used to avoid doing this multiple times
