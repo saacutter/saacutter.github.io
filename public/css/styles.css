@@ -312,4 +312,8 @@ article {
     vertical-align: middle;
     padding: 1.8em;
   }
+
+  article {
+    width: 90%;
+  }
 }

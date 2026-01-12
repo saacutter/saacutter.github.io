@@ -7,54 +7,20 @@ env:
 on: push
 
 jobs:
-  updatefrontmatter:
-    if: github.actor != 'github-actions[bot]'
-
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: actions/setup-python@v6
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run script to update post frontmatter
-        run: |
-          python update_posts.py
-
-      - name: Commit posts to repository
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          changed=$(git diff --cached --name-only)
-          git commit -m "Updated frontmatter of the posts ${changed//$'\n'/, }" || exit 0
-          git push
-  
-
   deploy:
     runs-on: ubuntu-latest
     
     permissions:
       contents: write
 
-    needs: updatefrontmatter
-
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repo
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.ref }}
-
-      - uses: actions/setup-python@v6
+        
+      - name: Setup Python
+        uses: actions/setup-python@v6
         with:
           python-version: '3.x'
 
@@ -71,7 +37,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Updated pages using new templates" || exit 0
+          changed=$(git diff --cached --name-only)
+          git commit -m "Updated frontmatter of the posts ${changed//$'\n'/, }" || exit 0
           git push
 
       - name: Install Vercel CLI

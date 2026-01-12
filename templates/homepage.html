@@ -89,9 +89,9 @@
             <div class="container">
                 <div class="centered">
                     {% for post in posts %}
-                        <a href="/{{ '%02d' | format(post.meta.created.year) }}/{{ '%02d' | format(post.meta.created.month) }}/{{ '%02d' | format(post.meta.created.day) }}/{{ post.meta.slug }}" class="post-entry">
-                            <p>{{ post.meta.title }}</p>
-                            <p>{{ post.meta.created.strftime('%d %B, %Y') }} {% if "updated" in post.meta %}<span>(Updated on {{ post.meta.updated.strftime('%d %B, %Y') }} at {{ post.meta.updated.strftime('%I:%M%p') }} UTC)</span>{% endif %}</p>
+                        <a href="/{{ '%02d' | format(post.created.year) }}/{{ '%02d' | format(post.created.month) }}/{{ '%02d' | format(post.created.day) }}/{{ post.slug }}" class="post-entry">
+                            <p>{{ post.title }}</p>
+                            <p>{{ post.created.strftime('%d %B, %Y') }} {% if "updated" in post %}<span>(Updated on {{ post.updated.strftime('%d %B, %Y') }} at {{ post.updated.strftime('%I:%M%p') }} UTC)</span>{% endif %}</p>
                         </a>
                     {% endfor %}
                 </div>
