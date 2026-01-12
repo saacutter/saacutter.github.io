@@ -9,7 +9,7 @@ import shutil
 POSTS = []
 ENV = Environment(loader=FileSystemLoader("templates"))
 ENV.globals['datetime'] = datetime # Make the datetime module available to templates
-ENV.globals['POSTS'] = POSTS # Make posts available to templates globally
+ENV.globals['posts'] = POSTS # Make posts available to templates globally
 
 def update_posts():
     global POSTS # Ensure that the global variable is used to avoid doing this multiple times
@@ -97,7 +97,7 @@ def render_homepage():
     with open("public/index.html", "w") as file:
         file.write(output)
 
-    print("The homepage has successfully been created.")
+    print("\033[0;32mThe homepage has successfully been created.\033[0m\n\n")
 
 
 def render_posts():
@@ -128,7 +128,7 @@ def render_posts():
         with open(f"{os.path.join(path, post["slug"])}.html", "w") as file:
             file.write(output)
         
-        print(f"\033[0;32mThe page for the {post["title"]} post has successfully been created.\033[0m")
+        print(f"\033[0;32mThe page for the {post["title"]} post has successfully been created.\033[0m\n")
 
 
 if __name__ == '__main__':

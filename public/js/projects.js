@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Make the corresponding category visible
                     categories[i].style.display = 'block';
 
+                    // Change the page title to reflect the current view (adapted from https://stackoverflow.com/questions/196972/convert-string-to-title-case-with-javascript)
+                    document.title = `saacutter.github.io - ${nav.id.charAt(0).toUpperCase() + nav.id.substring(1)}`;
+
                     // Push the new URL to history
                     window.history.pushState({}, '', `?view=${nav.id}`)
                 });
