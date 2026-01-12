@@ -104,9 +104,6 @@ def render_posts():
     global ENV
     markdown = mistune.create_markdown(plugins=['strikethrough', 'footnotes', 'table', 'url', 'task_lists', 'abbr', 'mark', 'insert', 'superscript', 'subscript', 'math', 'spoiler'], escape=False, hard_wrap=True)
 
-    # Remove all currently generated templates (prevents duplicates if the dates change)
-    shutil.rmtree("public/blog")
-
     # Store the post template in memory
     post_template = ENV.get_template("post.html")
 
