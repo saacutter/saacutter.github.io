@@ -297,10 +297,15 @@ button:hover {
 article {
   width: 70%;
   margin: 2em;
+  overflow-x: auto;
 }
 
 .post {
   text-align: left;
+}
+
+code, pre {
+  white-space: pre-wrap;
 }
 
 @media screen and  (max-width: 460px) {

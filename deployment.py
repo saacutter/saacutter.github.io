@@ -58,7 +58,7 @@ for root, dirs, files in os.walk("blog/"):
             with open(path, "rb") as byte_file:
                 file_bytes = byte_file.read()
             file_bytes = file_bytes.split(b"---", 2)[2] if file_bytes.startswith(b"---") else file_bytes
-            file_hash = hashlib.sha256(file_bytes).hexdigest()
+            file_hash = hashlib.sha256(file_bytes.lstrip(b"\n")).hexdigest() # Has to strip the starting newline characters because it would make it seem like a new file if any post didn't have frontmatter
 
             # If the hashes don't match, then update the modification time
             if post["hash"] == "" or post["hash"] != file_hash:
