@@ -1,9 +1,10 @@
 ---
+root: blog/
 filename: password-manager-readme.md
 title: Password Manager
 slug: password-manager-readme
 created: 2026-01-07 00:00:00
-updated: 2026-01-11 14:04:49.899431
+modified: 2026-01-11 14:04:49.899431
 hash: 29579529e2334637bc4dd5b9b3acf17d2c00dc44522864c975c071ca232420c6
 ---
 

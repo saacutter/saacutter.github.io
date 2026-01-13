@@ -1,6 +1,7 @@
 {
     "$schema": "https://openapi.vercel.sh/vercel.json",
     "routes": [
+        {"handle": "filesystem"},
         {
             "src": "^/games/?(.*)$",
             "dest": "/Projects/Games/menu.html"
@@ -14,8 +15,16 @@
             "dest": "https://grade-calculator-two-lime.vercel.app/$1"
         },
         {
-            "src": "^/([0-9]{4})/([0-9]{2})/([0-9]{2})/(.*)$",
-            "dest": "/blog/$1/$2/$3/$4.html"
+            "src": "^/([0-9]{4})/([0-9]{2})/([0-9]{2})/(.*)/(.*\\..*)$",
+            "dest": "/blog/$1/$2/$3/$4/$5"
+        },
+        {
+            "src": "^/([0-9]{4})/([0-9]{2})/([0-9]{2})/(.*)/$",
+            "dest": "/blog/$1/$2/$3/$4/$4.html"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/"
         }
     ]
 }

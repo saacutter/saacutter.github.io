@@ -1,9 +1,10 @@
 ---
+root: blog/
 filename: tournament-manager-readme.md
 title: tournament-manager-readme
 slug: tournament-manager-readme
 created: 2026-01-09 00:00:00
-updated: 2026-01-11 14:10:57.044808
+modified: 2026-01-11 14:10:57.044808
 hash: e99329a160f771b2f8850fb8c37c2624389fb48eb57fe2bd2bce9d6acdca6564
 ---
 

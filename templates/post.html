@@ -3,14 +3,14 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
-            <div class="centered">
-                <header>
-                    <h1>{{ post.title }}</h1>
-                    <p>{{ post.created.strftime('%d %B, %Y') }} {% if "updated" in post %}<span>(Updated on {{ post.updated.strftime('%d %B, %Y') }} at {{ post.updated.strftime('%I:%M%p') }} UTC)</span>{% endif %}</p>
-                </header>
-                <hr style="width: 70%; border: 1px solid black;">
-                <article class="centered post">
-                    {{ post.content }}
-                </article>
-            </div>
+<div class="centered">
+    <header>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.created.strftime('%d %B, %Y') }} {% if "modified" in post %}<span>(Updated on {{ post.modified.strftime('%d %B, %Y') }} at {{ post.modified.strftime('%I:%M%p') }} UTC)</span>{% endif %}</p>
+    </header>
+    <hr style="width: 70%; border: 1px solid black;">
+    <article class="centered post">
+        {{ post.content }}
+    </article>
+</div>
 {% endblock %}
