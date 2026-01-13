@@ -4,8 +4,8 @@ filename: tournament-manager-readme.md
 title: tournament-manager-readme
 slug: tournament-manager-readme
 created: 2026-01-09 00:00:00
-modified: 2026-01-11 14:10:57.044808
-hash: e99329a160f771b2f8850fb8c37c2624389fb48eb57fe2bd2bce9d6acdca6564
+modified: 2026-01-13 12:40:50.983888
+hash: 46f808c89bad7340382ce1ea91fd1d7f8e118dc68aded069549e95e01ee52679
 ---
 
 # Tournament Manager (Group 17)
