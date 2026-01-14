@@ -45,14 +45,15 @@ for root, dirs, files in os.walk("blog/"):
         ctime = post["created"]
         if not isinstance(ctime, datetime.datetime): post["created"] = datetime.datetime(ctime.year, ctime.month, ctime.day)
 
-        # If the updated time is not a datetime, convert it into one
+        # If the modification time is not a datetime, convert it into one
         utime = post["modified"]
         if utime != "" and not isinstance(utime, datetime.datetime): post["modified"] = datetime.datetime(utime.year, utime.month, utime.day)
 
-        # If the updated time is further than the current date, set it to the last modified time of the file
+        # If the creation or modification times are further than the current date, set it to the most recent modification datetime
+        if ctime > datetime.datetime.now(): post["created"] = mtime
         if utime != "" and utime > datetime.datetime.now(): post["modified"] = mtime
 
-        # If the post has been updated, set the updated date to the most recent modification date
+        # If the post has been updated, set the modification date to the most recent modification datetime
         if post["hash"] == "" or (utime == "" and mtime > post["created"]) or (utime != "" and mtime > utime):
             # Calculate the SHA-256 hash of the file (adapted from https://www.geeksforgeeks.org/python/how-to-detect-file-changes-using-python/)
             with open(path, "rb") as byte_file:
@@ -65,7 +66,7 @@ for root, dirs, files in os.walk("blog/"):
                 if post["hash"] != "": post["modified"] = mtime
                 post["hash"] = file_hash
 
-        # If the post has an empty modified field, ignore it
+        # If the post has an empty modification field, ignore it
         if post["modified"] == "" or post["created"] == post["modified"]: del post["modified"]
 
         # Append the (updated) post to the list of posts

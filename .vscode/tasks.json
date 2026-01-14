@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "command": "cd ~/website",
+            "label": "Go to website directory",
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "type": "shell",
+            "command": "vercel dev",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Go to website directory"
+            ],
+            "label": "Start Vercel environment",
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        }
+    ]
+}
