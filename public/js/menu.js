@@ -27,10 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         game.classList.add('programs-hover');
         CONTROLS.style.visibility = "visible";
 
-        //
-        if (localStorage.getItem('colour-preference') == "dark") game.classList.add('programs-hover-dark');
-        else game.classList.add('programs-hover-light')
-
         // Adjust the index
         curIndex = index;
     }));

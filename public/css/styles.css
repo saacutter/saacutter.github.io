@@ -25,17 +25,29 @@
 }
 
 :root {
-  --bg-colour: #ffffff;
-  --text-colour: #000000;
-  --dark-bg-colour: #2c2c2c;
-  --dark-text-colour: #ffffff;
   --program-colour: rgb(250, 240, 231);
   --font: 'Atkinson Hyperlegible', Helvetica, Arial, sans-serif;
-  --games-colour: rgb(76, 159, 248);
   --project-height: 30em;
 }
 
+/* Adapted from https://dev.to/whitep4nth3r/the-best-lightdark-mode-theme-toggle-in-javascript-368f?comments_sort=latest */
+[data-theme="light"] {
+  --bg-colour: #ffffff;
+  --text-colour: #000000;
+  --games-colour: rgb(76, 159, 248);
+  --img-invert: invert(0%);
+}
+
+[data-theme="dark"] {
+  --bg-colour: #2c2c2c;
+  --text-colour: #ffffff;
+  --games-colour: rgb(179, 96, 7);
+  --img-invert: invert(100%);
+}
+
 body {
+  color: var(--text-colour);
+  background-color: var(--bg-colour);
   font-family: var(--font);
   min-height: 100%;
   margin: 0;
@@ -87,24 +99,20 @@ h1 {
   height: 50%;
 }
 
+header.base, footer {
+  background-color: #010101;
+}
+
 .programs > div > .programs-hover {
   margin: -5px;
-  border-style: solid;
-  border-width: 5px;
+  border: 5px solid var(--games-colour);
   transition: 0.2s ease-in;
   transform: translateY(-10px);
 }
 
-.programs-hover-dark {
-  border-color: rgb(179, 97, 23);
-}
-
-.programs-hover-light {
-  border-color: var(--games-colour);
-}
-
 .program > h1 {
   color: white;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -133,6 +141,7 @@ h1 {
   margin: 0.5em;
   display: flex;
   gap: 4em;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -180,13 +189,14 @@ h1 {
 }
 
 main {
+  display: flex;
   flex: 1;
   background-color: var(--bg-colour);
 }
 
 main > div.container {
   width: 100%;
-  color: black;
+  color: var(--text-colour);
   padding-top: 0.5em;
   padding-bottom: 1em;
 }
@@ -204,6 +214,10 @@ main > div.container {
   justify-content: flex-end;
 }
 
+#play {
+  filter: var(--img-invert);
+}
+
 header.base {
   display: flex;
   position: sticky;
@@ -219,7 +233,7 @@ nav {
 }
 
 nav a {
-  color: var(--dark-text-colour);
+  color: white;
   display: inline-block;
   width: 4em;
   text-align: center;
@@ -237,11 +251,8 @@ nav a:last-child {
   clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-#colour-mode {
-  display: inline-flex;
-}
-
 ul#projects-list > li {
+  background-color: var(--bg-colour);
   list-style-type: none;
   text-align: left;
   padding: 1em;
@@ -249,7 +260,7 @@ ul#projects-list > li {
   margin-bottom: 1em;
   margin-left: 3em;
   margin-right: 3em;
-  border: 2px solid black;
+  border: 2px solid var(--text-colour);
   border-radius: 10px;
 }
 
@@ -280,16 +291,12 @@ button:hover {
   gap: 1em;
 }
 
-.colour-mode {
-  background-color: grey;
-  margin: 10px;
-}
-
 .post-entry {
   display: block;
-  color: black;
+  background-color: var(--bg-colour);
+  color: var(--text-colour);
   padding: 1em;
-  border: 2px solid black;
+  border: 2px solid var(--text-colour);
   margin: 1em;
   text-align: left;
 }

@@ -12,8 +12,6 @@
         <script src="/js/colourmode.js"></script>
         <style>
             body { /* Adapted from https://stackoverflow.com/questions/17054158/css-100-height-with-header-and-footer */
-                background-color: #010101;
-                color: black;
                 display: flex;
                 flex-direction: column;
                 min-height: 100dvh;
@@ -25,7 +23,7 @@
     <body>
         <header class="base">
             <a>
-                <img src="" class="colour-mode" id="colour-mode">
+                <img src="" alt="Colour preference button" id="colour-mode" style="filter: invert(100%); margin: 10px; display: inline-flex;">
             </a>
             <div style="margin-left: auto;">
                 <nav style="display: flex;">
@@ -42,10 +40,10 @@
         <footer>
             <div class="centered">
                 <a href="https://github.com/saacutter" class="icon" id="github">
-                    <img src="/img/github-white.svg">
+                    <img src="/img/github-white.svg" alt="GitHub icon">
                 </a>
                 <a href="https://www.linkedin.com/in/isaac-rutter/" class="icon" id="linkedin">
-                    <img src="/img/linkedin-white.png">
+                    <img src="/img/linkedin-white.png" alt="LinkedIn icon">
                 </a>
             </div>
             <p class="centered" style="color:white;">© {{ datetime.date.today().year }} Isaac Rutter</p>
