@@ -6,7 +6,7 @@ import yaml
 import hashlib
 import shutil
 
-POSTS = []
+POSTS = {}
 ENV = Environment(loader=FileSystemLoader("templates"))
 ENV.globals['datetime'] = datetime # Make the datetime module available to templates
 ENV.globals['posts'] = POSTS # Make posts available to templates globally
@@ -49,6 +49,11 @@ for root, dirs, files in os.walk("blog/"):
         utime = post["modified"]
         if utime != "" and not isinstance(utime, datetime.datetime): post["modified"] = datetime.datetime(utime.year, utime.month, utime.day)
 
+        # If the ctime is greater than the utime, set the ctime to the utime and remove the utime
+        if utime != "" and ctime > utime:
+            post["created"] = utime
+            post["modified"] = mtime if mtime > utime else ""
+
         # If the creation or modification times are further than the current date, set it to the most recent modification datetime
         if ctime > datetime.datetime.now(): post["created"] = mtime
         if utime != "" and utime > datetime.datetime.now(): post["modified"] = mtime
@@ -70,7 +75,10 @@ for root, dirs, files in os.walk("blog/"):
         if post["modified"] == "" or post["created"] == post["modified"]: del post["modified"]
 
         # Append the (updated) post to the list of posts
-        POSTS.append(post.copy())
+        month, year = post["modified"].strftime("%m %Y").split(" ") if "modified" in post else post["created"].strftime("%m %Y").split(" ")
+        if year not in POSTS: POSTS[year] = {}
+        if month not in POSTS[year]: POSTS[year][month] = []
+        POSTS[year][month].append(post.copy())
 
         # If the frontmatter did not change then don't write to the file
         if frontmatter == post: continue
@@ -85,7 +93,9 @@ for root, dirs, files in os.walk("blog/"):
 
 
 # Sort the posts by their modification date (newest first)
-POSTS.sort(key = lambda x: x["modified"] if "modified" in x else x["created"], reverse=True)
+for year in POSTS:
+    for month in POSTS[year]:
+        POSTS[year][month].sort(key = lambda x: x["modified"] if "modified" in x else x["created"], reverse=True)
 
 
 print("The homepage is now being created.")
@@ -107,27 +117,29 @@ markdown = mistune.create_markdown(plugins=['strikethrough', 'footnotes', 'table
 post_template = ENV.get_template("post.html")
 
 # Render every post
-for post in POSTS:
-    print(f"The {post["title"]} page is now being created.")
+for year in POSTS:
+    for month in POSTS[year]:
+        for post in POSTS[year][month]:
+            print(f"The {post["title"]} page is now being created.")
 
-    # Render the post
-    post["content"] = markdown(post["content"])
+            # Render the post
+            post["content"] = markdown(post["content"])
 
-    # Render the post using the template
-    output = post_template.render(post=post)
+            # Render the post using the template
+            output = post_template.render(post=post)
 
-    # Create the path of the output render and make the directory
-    path = os.path.join("public", "blog", f"{post["created"].year:02}", f"{post["created"].month:02}", f"{post["created"].day:02}", post["slug"])
-    os.makedirs(path, exist_ok=True)
-    
-    # Write the render to a file
-    with open(f"{os.path.join(path, post["slug"])}.html", "w") as file:
-        file.write(output)
+            # Create the path of the output render and make the directory
+            path = os.path.join("public", "blog", f"{post["created"].year:02}", f"{post["created"].month:02}", f"{post["created"].day:02}", post["slug"])
+            os.makedirs(path, exist_ok=True)
+            
+            # Write the render to a file
+            with open(f"{os.path.join(path, post["slug"])}.html", "w") as file:
+                file.write(output)
 
-    # If the file was in a directory, then copy over all other contents to make it accessible to the rendered HTML post
-    if len(os.path.join(post["root"], post["filename"]).split("/")) > 2:
-        for root, dirs, files in os.walk(post["root"]):
-            for file in files:
-                if not file.endswith(".md"): shutil.copy(os.path.join(root, file), path)
-        
-    print(f"\033[0;32mThe page for the {post["title"]} post has successfully been created.\033[0m\n")
+            # If the file was in a directory, then copy over all other contents to make it accessible to the rendered HTML post
+            if len(os.path.join(post["root"], post["filename"]).split("/")) > 2:
+                for root, dirs, files in os.walk(post["root"]):
+                    for file in files:
+                        if not file.endswith(".md"): shutil.copy(os.path.join(root, file), path)
+                
+            print(f"\033[0;32mThe page for the {post["title"]} post has successfully been created.\033[0m\n")

@@ -87,13 +87,20 @@
     </ul>
 </div>
 <div class="container">
-    <div class="centered">
-        {% for post in posts %}
-            <a href="/{{ '%02d' | format(post.created.year) }}/{{ '%02d' | format(post.created.month) }}/{{ '%02d' | format(post.created.day) }}/{{ post.slug }}/" class="post-entry">
-                <p>{{ post.title }}</p>
-                <p>{{ post.created.strftime('%d %B, %Y') }} {% if "modified" in post %}<span>(Updated on {{ post.modified.strftime('%d %B, %Y') }} at {{ post.modified.strftime('%I:%M%p') }} UTC)</span>{% endif %}</p>
-            </a>
-        {% endfor %}
-    </div>
+    {% for year, months in posts.items() | sort(attribute='0', reverse=True) %}
+        <div style="margin-bottom: 5em;">
+            <h1>{{ year }}</h1>
+            {% for month, blog in months.items() | sort(attribute='0') %}
+                <div style="margin-left: 2em;">
+                    <h3>{{ datetime.datetime.strptime(month, '%m').strftime('%B') }}</h3>
+                    {% for post in blog %}
+                        <a href="/{{ '%02d' | format(post.created.year) }}/{{ '%02d' | format(post.created.month) }}/{{ '%02d' | format(post.created.day) }}/{{ post.slug }}/" class="post-entry">
+                            {{ post.title }} <span>({% if "modified" in post %}{{ post.modified.strftime('%d-%m') }}{% else %}{{ post.created.strftime('%d-%m') }}{% endif %})</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}

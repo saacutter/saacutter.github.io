@@ -33,6 +33,7 @@
 /* Adapted from https://dev.to/whitep4nth3r/the-best-lightdark-mode-theme-toggle-in-javascript-368f?comments_sort=latest */
 [data-theme="light"] {
   --bg-colour: #ffffff;
+  --bg-colour-secondary: #555555;
   --text-colour: #000000;
   --games-colour: rgb(76, 159, 248);
   --img-invert: invert(0%);
@@ -40,6 +41,7 @@
 
 [data-theme="dark"] {
   --bg-colour: #2c2c2c;
+  --bg-colour-secondary: #000000;
   --text-colour: #ffffff;
   --games-colour: rgb(179, 96, 7);
   --img-invert: invert(100%);
@@ -100,7 +102,7 @@ h1 {
 }
 
 header.base, footer {
-  background-color: #010101;
+  background-color: var(--bg-colour-secondary);
 }
 
 .programs > div > .programs-hover {
@@ -194,7 +196,7 @@ main {
   background-color: var(--bg-colour);
 }
 
-main > div.container {
+main > div {
   width: 100%;
   color: var(--text-colour);
   padding-top: 0.5em;
@@ -223,7 +225,6 @@ header.base {
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: black;
   height: 3em;
 }
 
@@ -293,12 +294,15 @@ button:hover {
 
 .post-entry {
   display: block;
-  background-color: var(--bg-colour);
   color: var(--text-colour);
-  padding: 1em;
-  border: 2px solid var(--text-colour);
   margin: 1em;
+  margin-left: 2em;
   text-align: left;
+  width: fit-content;
+}
+
+.post-entry:hover {
+  text-decoration: underline;
 }
 
 article {

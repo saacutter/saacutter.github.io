@@ -2,8 +2,9 @@
 .vercel
 .env*.local
 
-# Ignore virtual environment
+# Ignore virtual environment and pycache
 .venv
+**/__pycache__
 
 # Ignore generated files
 public/index.html
