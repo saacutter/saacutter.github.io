@@ -20,18 +20,18 @@
         margin-bottom: 80px;
       }
 
-      #cl3 {
+      #cl2 {
         position: absolute;
         left: -1vw;
-        top: -7vh;
+        top: -90%;
         z-index: 0;
         width: 100vw;
       }
 
-      #cl2 {
+      #cl1 {
         position: absolute;
         left: -1vw;
-        bottom: -10vh;
+        bottom: 0px;
         width: 100vw;
       }
 
@@ -48,27 +48,27 @@
         margin: 0 auto;
         position: relative;
         z-index: 1;
-
       }
     </style>
   </head>
   <body>
     <div>
-      <img src="clouds2.png" id="cl3">
+      <img src="clouds2.png" id="cl2">
       <h1 style="font-family: Jaro; color: black;">Ball Bounce</h1>
     </div>
     <canvas id="screen" width="800" height="400"></canvas>
-    <img src="clouds1.png" id="cl2">
+    <img src="clouds1.png" id="cl1">
     <script src="game.js"></script>
     <script>
       // Determine screen size
       window.addEventListener('resize', resize);
 
       function resize() {
-        if (screen.width < 720) {
+        if (screen.width < 800) {
           canvas.width = screen.width - 30;
+        } else {
+          canvas.width = "800";
         }
-        start();
       }
 
       resize();
