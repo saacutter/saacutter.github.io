@@ -1,6 +1,6 @@
 const canvas = document.querySelector('#screen');
 const ctx = canvas.getContext('2d');
-FPS = 60;
+const FPS = 60;
 gameState = 1; // 1 = intro, 2 = in game, 3 = game over
 
 // Create the background image objects (source: https://free-game-assets.itch.io/ocean-and-clouds-free-pixel-art-backgrounds)
@@ -9,6 +9,10 @@ load_images();
 
 // Load the font
 load_font();
+
+// Create the ball object
+ball = {x: 40, y: canvas.height / 2, radius: canvas.width / 80};
+ballWidth = Math.PI * 2;
 
 // Initialise constants for falling physics
 GRAVITY = 0.05;
@@ -36,10 +40,6 @@ document.addEventListener("keydown", (event) => {
 });
 
 function intro() {
-    // Create the ball object
-    ball = {x: 40, y: canvas.height / 2, radius: canvas.width / 80};
-    ballWidth = Math.PI * 2;
-
     // Draw the background (clears the canvas)
     ctx.drawImage(BG[0], 0, 0, canvas.width, canvas.height);
 

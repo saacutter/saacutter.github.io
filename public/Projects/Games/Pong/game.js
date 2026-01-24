@@ -1,6 +1,6 @@
 const canvas = document.querySelector('#screen');
 const ctx = canvas.getContext('2d');
-FPS = 60;
+const FPS = 60;
 gameState = 1; // 1 = intro, 2 = in game
 
 // Load the font
@@ -51,9 +51,18 @@ function draw() {
     ctx.fillStyle = "black";
     ctx.fill();
 
-    // Draw the objects
-    drawPaddles();
-    drawBall();
+    // Draw the paddles
+    ctx.beginPath();
+    ctx.rect(PADDLES["player"].x, PADDLES["player"].y, PADDLEWIDTH, PADDLEHEIGHT); // Draw player paddle
+    ctx.rect(PADDLES["ai"].x, PADDLES["ai"].y, PADDLEWIDTH, PADDLEHEIGHT); // Draw AI paddle
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.closePath();
+
+    // Draw the ball
+    ctx.arc(BALL.x, BALL.y, BALLRADIUS, 0, 2*Math.PI);
+    ctx.fillStyle = "white";
+    ctx.fill();
 
     // Draw the scores onto the screen
     let fontSize = canvas.width/16;
@@ -110,29 +119,6 @@ function draw() {
     // Identify if the ball is out of bounds
     if (BALL.x - BALLRADIUS <= 0) {opponent_score += 1; gameOver();}
     else if (BALL.x + BALLRADIUS >= canvas.width) {player_score += 1; gameOver();}
-}
-
-function drawPaddles() {
-    ctx.beginPath();
-
-    // Draw player paddle
-    ctx.rect(PADDLES["player"].x, PADDLES["player"].y, PADDLEWIDTH, PADDLEHEIGHT);
-
-    // Draw AI paddle
-    ctx.rect(PADDLES["ai"].x, PADDLES["ai"].y, PADDLEWIDTH, PADDLEHEIGHT);
-
-    // Colour the paddles
-    ctx.fillStyle = "white";
-    ctx.fill();
-    ctx.closePath();
-}
-
-function drawBall() {
-  ctx.beginPath();
-  ctx.arc(BALL.x, BALL.y, BALLRADIUS, 0, 2*Math.PI);
-  ctx.fillStyle = "white";
-  ctx.fill();
-  ctx.closePath();
 }
 
 function gameOver() {
