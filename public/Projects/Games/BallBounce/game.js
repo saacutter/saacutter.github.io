@@ -10,10 +10,6 @@ load_images();
 // Load the font
 load_font();
 
-// Create the ball object
-ball = {x: 40, y: canvas.height / 2, radius: canvas.width / 80};
-ballWidth = Math.PI * 2;
-
 // Initialise constants for falling physics
 GRAVITY = 0.05;
 UPVELOCITY = -2.5;
@@ -40,6 +36,10 @@ document.addEventListener("keydown", (event) => {
 });
 
 function intro() {
+    // Create the ball object
+    ball = {x: 40, y: canvas.height / 2, radius: canvas.width / 80};
+    ballWidth = Math.PI * 2;
+
     // Draw the background (clears the canvas)
     ctx.drawImage(BG[0], 0, 0, canvas.width, canvas.height);
 
@@ -158,12 +158,12 @@ function drawPipePair() {
         ctx.beginPath();
 
         // Draw bottom pipe
-        ctx.rect(PIPES[i].x, PIPES[i].y + 40 + LIPHEIGHT, PIPEWIDTH, PIPEHEIGHT);
-        ctx.rect(PIPES[i].x - (PIPEWIDTH/4), PIPES[i].y + 40, PIPEWIDTH + PIPEWIDTH/2, LIPHEIGHT);
+        ctx.rect(PIPES[i].x, PIPES[i].y + canvas.height/10 + LIPHEIGHT, PIPEWIDTH, PIPEHEIGHT);
+        ctx.rect(PIPES[i].x - (PIPEWIDTH/4), PIPES[i].y + canvas.height/10, PIPEWIDTH + PIPEWIDTH/2, LIPHEIGHT);
 
         // Draw top pipe
-        ctx.rect(PIPES[i].x, PIPES[i].y - 60 - LIPHEIGHT - PIPEHEIGHT, PIPEWIDTH, PIPEHEIGHT);
-        ctx.rect(PIPES[i].x - (PIPEWIDTH/4), PIPES[i].y - 60 - LIPHEIGHT, PIPEWIDTH + PIPEWIDTH/2, LIPHEIGHT);
+        ctx.rect(PIPES[i].x, PIPES[i].y - canvas.height/8 - LIPHEIGHT - PIPEHEIGHT, PIPEWIDTH, PIPEHEIGHT);
+        ctx.rect(PIPES[i].x - (PIPEWIDTH/4), PIPES[i].y - canvas.height/8 - LIPHEIGHT, PIPEWIDTH + PIPEWIDTH/2, LIPHEIGHT);
 
         // Colour the pipes
         ctx.fillStyle = "green";
@@ -223,7 +223,7 @@ function collision() {
         let pipe = PIPES[i];
         if (
             (ball.x >= pipe.x - (PIPEWIDTH/4) && ball.x <= pipe.x + PIPEWIDTH + (PIPEWIDTH/2)) && // Check if the ball is within the pipe's width
-            (ball.y + ballWidth > pipe.y + 40 || ball.y - ballWidth < pipe.y - 50) // Check if the ball is between the pipes
+            (ball.y + ballWidth > pipe.y + canvas.height/10 || ball.y - ballWidth < pipe.y - canvas.height/10) // Check if the ball is between the pipes
         ) return true;
     }
 
