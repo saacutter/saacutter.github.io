@@ -2,15 +2,28 @@
 
 {% block title %}{{ post.title }}{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+{% endblock %}
+
 {% block body %}
-<div class="centered">
-    <header>
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.created.strftime('%d %B, %Y') }} {% if "modified" in post %}<span>(Updated on {{ post.modified.strftime('%d %B, %Y') }} at {{ post.modified.strftime('%I:%M%p') }} UTC)</span>{% endif %}</p>
-    </header>
-    <hr style="width: 70%; border: 1px solid black;">
-    <article class="centered post">
-        {{ post.content }}
-    </article>
-</div>
+    {% if post.toc %}<div class="post-with-toc">{% endif %}
+        <div class="centered" {% if post.toc %} style="width: 70%; margin: 0; margin-left: 5em;" {% endif %}>
+            <header>
+                <h1>{{ post.title }}</h1>
+                <p>{{ post.created.strftime('%d %B, %Y') }} {% if "modified" in post %}<span>(last updated {{ post.modified.strftime('%d %B, %Y') }})</span>{% endif %}</p>
+            </header>
+            <hr style="width: 70%; border: 1px solid black;">
+            <article class="centered post">
+                {{ post.content }}
+            </article>
+        </div>
+    {% if post.toc %}
+        <nav class="toc">
+            {{ post.toc }}
+        </nav>
+    </div>
+    {% endif %}
 {% endblock %}

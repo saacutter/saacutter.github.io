@@ -35,6 +35,8 @@
   --bg-colour: #ffffff;
   --bg-colour-secondary: #555555;
   --text-colour: #000000;
+  --text-colour-secondary: #3b3b3b;
+  --code-bg-colour: #f3f3f3;
   --games-colour: rgb(76, 159, 248);
   --img-invert: invert(0%);
 }
@@ -43,6 +45,8 @@
   --bg-colour: #2c2c2c;
   --bg-colour-secondary: #000000;
   --text-colour: #ffffff;
+  --text-colour-secondary: #afafaf;
+  --code-bg-colour: #1a1b26;
   --games-colour: rgb(179, 96, 7);
   --img-invert: invert(100%);
 }
@@ -228,12 +232,12 @@ header.base {
   height: 3em;
 }
 
-nav {
+#home-nav {
   margin-left: auto;
   align-content: center;
 }
 
-nav a {
+#home-nav a {
   color: white;
   display: inline-block;
   width: 4em;
@@ -248,7 +252,7 @@ nav a {
   color: var(--text-colour);
 }
 
-nav a:last-child {
+#home-nav a:last-child {
   clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
@@ -307,7 +311,6 @@ button:hover {
 
 article {
   width: 70%;
-  margin: 2em;
   overflow-x: auto;
 }
 
@@ -319,17 +322,76 @@ code, pre {
   white-space: pre-wrap;
 }
 
-@media screen and  (max-width: 460px) {
-  nav {
+.hljs {
+  color: var(--text-colour) !important;
+  background-color: var(--code-bg-colour) !important;
+  border: 2px solid var(--bg-colour-secondary) !important;
+  border-radius: 5px !important;
+}
+
+.toc {
+  height: fit-content;
+  margin-top: 6em;
+  margin-right: 3em;
+  position: sticky;
+  top: 3.5em;
+  z-index: 1;
+}
+
+.toc li {
+  list-style-type: none;
+  width: fit-content;
+}
+
+.toc a {
+  color: var(--text-colour-secondary);
+  padding-left: 10px;
+  border: 2px solid transparent;
+}
+
+.toc a:hover {
+  color: var(--text-colour);
+  border-left: 2px solid var(--text-colour);
+}
+
+.post-with-toc {
+  display: flex; 
+  flex-direction: row;
+}
+
+h1[id]::before, h2[id]::before, h3[id]::before, h4[id]::before, h5[id]::before, h6[id]::before { /* Adapted from https://stackoverflow.com/questions/10732690/offsetting-an-html-anchor-to-adjust-for-fixed-header */
+  content: '';
+  display: block;
+  height:      3em;
+  margin-top: -3em;
+  visibility: hidden;
+}
+
+@media screen and (max-width: 500px) {
+  #home-nav {
     font-size: 10px;
   }
 
-  nav a {
+  #home-nav a {
     vertical-align: middle;
     padding: 1.8em;
   }
 
   article {
     width: 90%;
+  }
+
+  .post-with-toc {
+    margin: 0em;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .toc {
+    display: none;
+  }
+
+  .post-with-toc {
+    display: block;
   }
 }

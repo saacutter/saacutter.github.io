@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.querySelectorAll('nav a');
+    const navbar = document.querySelectorAll('#home-nav a');
 
     // Handle navbar categories
     const categories = document.querySelectorAll('div.container');
@@ -37,13 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Set the view to the previous page if the back buttons are used
-    window.addEventListener('popstate', (e) => {
-        if (e.state) setView(e.state.prevView);
-        else setView(null);
-    });
-
-    // Set the search parameters
     if (window.location.pathname == "/") {
+        window.addEventListener('popstate', (e) => {
+            if (e.state) setView(e.state.prevView);
+            else setView(null);
+        });
+
+        // Set the search parameters
         setView(null);
     }
 });

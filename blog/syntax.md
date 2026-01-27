@@ -4,8 +4,8 @@ filename: syntax.md
 title: syntax
 slug: syntax
 created: 2025-01-13 12:40:50.983888
-modified: 2025-09-21 17:17:33.576832
-hash: d76e31dbc192e6978236bf22f9c05da173699f865a9d597c4dd6cb5ab3864c1c
+modified: 2026-01-27 08:54:33.081732
+hash: cc41b6850c3b76c160e526d39f2e8b9bd1cedcca288225f2d8535b6197578c22
 ---
 
 ~~strikethrough~~
@@ -29,3 +29,23 @@ term
 sub~script~
 
 super^script^
+
+```py
+def f():
+    print("This is a function")
+    var = 0
+    for i in ['0']:
+        int(i)
+```
+
+```java
+public class Test extends Sample {
+    private int id;
+    public String name;
+
+    public Test(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+}
+```
