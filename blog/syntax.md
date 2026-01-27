@@ -4,7 +4,7 @@ filename: syntax.md
 title: syntax
 slug: syntax
 created: 2025-01-13 12:40:50.983888
-modified: 2026-01-27 08:54:33.081732
+modified: 2026-01-27 03:24:20.911427
 hash: cc41b6850c3b76c160e526d39f2e8b9bd1cedcca288225f2d8535b6197578c22
 ---
 
