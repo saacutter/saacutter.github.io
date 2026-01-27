@@ -19,7 +19,7 @@
         },
         {
             "type": "shell",
-            "command": "vercel dev",
+            "command": "pipenv run vercel dev",
             "dependsOrder": "sequence",
             "dependsOn": [
                 "Go to website directory"

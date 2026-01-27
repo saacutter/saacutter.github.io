@@ -3,8 +3,16 @@
     "routes": [
         {"handle": "filesystem"},
         {
-            "src": "^/games/?(.*)$",
+            "src": "^/games/$",
             "dest": "/Projects/Games/menu.html"
+        },
+        {
+            "src": "^/games/(.*)/$",
+            "dest": "/Projects/Games/$1/index.html"
+        },
+        {
+            "src": "^/games/(.*)/(.*)$",
+            "dest": "/Projects/Games/$1/$2"
         },
         {
             "src": "^/calculator/(.*)$",
