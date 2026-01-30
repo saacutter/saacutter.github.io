@@ -30,8 +30,7 @@
   --project-height: 30em;
 }
 
-/* Adapted from https://dev.to/whitep4nth3r/the-best-lightdark-mode-theme-toggle-in-javascript-368f?comments_sort=latest */
-[data-theme="light"] {
+[data-theme="light"] { /* Adapted from https://dev.to/whitep4nth3r/the-best-lightdark-mode-theme-toggle-in-javascript-368f?comments_sort=latest */
   --bg-colour: #ffffff;
   --bg-colour-secondary: #555555;
   --text-colour: #000000;
@@ -248,8 +247,8 @@ header.base {
 }
 
 .navbar-selected {
-  background-color: var(--bg-colour);
-  color: var(--text-colour);
+  background-color: var(--bg-colour) !important;
+  color: var(--text-colour) !important;
 }
 
 #home-nav a:last-child {
